@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quizify | Admin Dashboard</title>
+
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+body{
+    background:linear-gradient(135deg,#eef5ff,#dbeafe);
+    font-family:Arial,sans-serif;
+}
+
+.wrapper{
+    max-width:1300px;
+    margin:auto;
+    padding:45px 20px;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.title{
+    font-size:46px;
+    font-weight:800;
+    color:#2563eb;
+}
+
+.subtitle{
+    color:#6c757d;
+    font-size:17px;
+}
+
+/* ======================================
+   SUMMARY DASHBOARD
+====================================== */
+
+.summary-dashboard{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+    gap:25px;
+
+    margin-bottom:40px;
+
+}
+
+.summary-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:28px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:20px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.summary-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.summary-icon{
+
+    width:70px;
+
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:34px;
+
+    color:#fff;
+
+}
+
+.summary-users{
+
+    background:#0d6efd;
+
+}
+
+.summary-attempts{
+
+    background:#198754;
+
+}
+
+.summary-categories{
+
+    background:#fd7e14;
+
+}
+
+.summary-info h2{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:800;
+
+}
+
+.summary-info p{
+
+    margin:0;
+
+    color:#6c757d;
+
+    font-weight:600;
+
+}
+.dashboard{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card{
+    border:none;
+    border-radius:22px;
+    padding:30px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,.10);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.icon{
+    font-size:60px;
+    margin-bottom:18px;
+}
+
+.card h3{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#666;
+    min-height:50px;
+}
+
+.action-btn{
+    width:100%;
+    border-radius:30px;
+    padding:10px;
+    font-weight:bold;
+}
+
+.logout-btn{
+    border-radius:30px;
+    padding:10px 25px;
+    font-weight:bold;
+}
+
+.note{
+    margin-top:40px;
+    background:#fff;
+    border-left:6px solid #0d6efd;
+    border-radius:18px;
+    padding:25px;
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+}
+
+.note h4{
+    color:#0d6efd;
+    margin-bottom:15px;
+}
+
+.note ol{
+    margin-bottom:0;
+}
+
+    .action-btn{
+    display:inline-block;
+    width:100%;
+    padding:12px;
+    border-radius:30px;
+    font-weight:bold;
+    color:white !important;
+    text-decoration:none !important;
+}
+
+.btn-primary.action-btn{
+    background:#0d6efd;
+}
+
+.logout-btn{
+    background:blue;
+    color:white !important;
+    text-decoration:none !important;
+    padding:10px 22px;
+    border-radius:30px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+
+<div class="header">
+
+<div>
+
+<div class="title">
+Quizify Admin Dashboard
+</div>
+
+<div class="subtitle">
+Welcome Administrator. Manage every aspect of your quiz application from one place.
+</div>
+
+</div>
+
+<a href="{% url 'logout' %}" class="btn btn-primary logout-btn">
+    <i class="bi bi-box-arrow-right"></i> Logout
+</a>
+
+</div>
+<!-- SUMMARY DASHBOARD -->
+
+<div class="summary-dashboard">
+
+    <div class="summary-card">
+
+        <div class="summary-icon summary-users">
+
+            <i class="bi bi-people-fill"></i>
+
+        </div>
+
+        <div class="summary-info">
+
+            <h2>{{ total_users }}</h2>
+
+            <p>Total Registered Users</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon summary-attempts">
+
+            <i class="bi bi-journal-check"></i>
+
+        </div>
+
+        <div class="summary-info">
+
+            <h2>{{ total_attempts }}</h2>
+
+            <p>Total Quiz Attempts</p>
+
+        </div>
+
+    </div>
+
+    <div class="summary-card">
+
+        <div class="summary-icon summary-categories">
+
+            <i class="bi bi-grid-3x3-gap-fill"></i>
+
+        </div>
+
+        <div class="summary-info">
+
+            <h2>{{ total_categories }}</h2>
+
+            <p>Total Categories</p>
+
+        </div>
+
+    </div>
+
+</div>
+<div class="dashboard">
+
+<div class="card">
+
+<div class="icon text-primary">
+<i class="bi bi-people-fill"></i>
+</div>
+
+<h3>User Management</h3>
+
+<p>
+View all registered users and manage their accounts.
+</p>
+
+<a href="{% url 'manage_users' %}" class="btn btn-primary action-btn">
+    Manage Users
+</a>
+
+</div>
+
+<div class="card">
+
+<div class="icon text-success">
+<i class="bi bi-patch-question-fill"></i>
+</div>
+
+<h3>Question Management</h3>
+
+<p>
+Add, edit and organize quiz questions category-wise.
+</p>
+
+<a href="{% url 'manage_questions' %}" class="btn btn-primary action-btn">
+    Manage Questions
+</a>
+
+</div>
+
+
+
+<div class="card">
+
+<div class="icon text-danger">
+<i class="bi bi-bar-chart-fill"></i>
+</div>
+
+<h3>Statistics</h3>
+
+<p>
+Monitor quiz statistics and application performance.
+</p>
+
+<a href="{% url 'statistics' %}" class="btn btn-primary action-btn">
+    View Statistics
+</a>
+
+</div>
+
+
+
+</div>
+
+</body>
+
+</html>

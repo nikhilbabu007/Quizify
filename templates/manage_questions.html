@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quizify | Manage Questions</title>
+
+<link rel="icon" href="{% static 'images/5692030.png' %}">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+body{
+    margin:0;
+    background:linear-gradient(135deg,#edf4ff,#d7e9ff);
+    font-family:Arial,sans-serif;
+}
+
+.wrap{
+    max-width:900px;
+    margin:auto;
+    padding:40px 20px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+h1{
+    font-size:44px;
+    font-weight:800;
+    color:#2563eb;
+    margin:0;
+}
+
+.sub{
+    color:#6b7280;
+}
+
+.card{
+    background:#fff;
+    border:none;
+    border-left:8px solid;
+    border-radius:22px;
+    padding:28px;
+    margin:22px 0;
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.icon{
+    font-size:56px;
+    margin-bottom:15px;
+}
+
+.btn-manage{
+    min-width:170px;
+    border-radius:30px;
+    font-weight:bold;
+    padding:10px 25px;
+}
+
+.btn-back{
+    border-radius:30px;
+    font-weight:bold;
+    padding:10px 25px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="wrap">
+
+<div class="top">
+
+<div>
+
+<h1>Manage Questions</h1>
+
+<div class="sub">
+Choose a category to manage its questions.
+</div>
+
+</div>
+
+<a href="{% url 'admin_index' %}" class="btn btn-primary btn-back">
+<i class="bi bi-arrow-left me-2"></i>
+Back
+</a>
+
+</div>
+
+<!-- Science -->
+
+<div class="card text-center" style="border-color:#0d6efd;">
+
+<i class="fa-solid fa-flask fa-4x text-primary"></i>
+
+<h2 class="mt-3">Science</h2>
+
+<p>Manage Physics, Chemistry and Biology questions.</p>
+
+<a href="{% url 'manage_category' 'Science' %}" class="btn btn-primary btn-manage">
+
+<i class="bi bi-pencil-square me-2"></i>
+
+Manage
+
+</a>
+
+</div>
+
+<!-- Mathematics -->
+
+<div class="card text-center" style="border-color:#198754;">
+
+<i class="bi bi-calculator text-success icon"></i>
+
+<h2 class="mt-3">Mathematics</h2>
+
+<p>Manage Arithmetic, Algebra and Logical Reasoning questions.</p>
+
+<a href="{% url 'manage_category' 'Mathematics' %}" class="btn btn-primary btn-manage">
+
+<i class="bi bi-pencil-square me-2"></i>
+
+Manage
+
+</a>
+
+</div>
+
+<!-- General Knowledge -->
+
+<div class="card text-center" style="border-color:#ffc107;">
+
+<i class="bi bi-globe2 text-warning icon"></i>
+
+<h2 class="mt-3">General Knowledge</h2>
+
+<p>Manage Current Affairs and World Knowledge questions.</p>
+
+<a href="{% url 'manage_category' 'General Knowledge' %}" class="btn btn-primary btn-manage">
+
+<i class="bi bi-pencil-square me-2"></i>
+
+Manage
+
+</a>
+
+</div>
+
+<!-- Computer Science -->
+
+<div class="card text-center" style="border-color:#0dcaf0;">
+
+<i class="bi bi-pc-display text-info icon"></i>
+
+<h2 class="mt-3">Computer Science</h2>
+
+<p>Manage Programming, Database and Networking questions.</p>
+
+<a href="{% url 'manage_category' 'Computer Science' %}" class="btn btn-primary btn-manage">
+
+<i class="bi bi-pencil-square me-2"></i>
+
+Manage
+
+</a>
+
+</div>
+
+<!-- History -->
+
+<div class="card text-center" style="border-color:#dc3545;">
+
+<i class="bi bi-book-half text-danger icon"></i>
+
+<h2 class="mt-3">History</h2>
+
+<p>Manage Ancient, Medieval and Modern History questions.</p>
+
+<a href="{% url 'manage_category' 'History' %}" class="btn btn-primary btn-manage">
+
+<i class="bi bi-pencil-square me-2"></i>
+
+Manage
+
+</a>
+
+</div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Quizify | Dashboard</title>
+
+<link rel="icon"
+      href="{% static 'images/5692030.png' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %}">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+
+min-height:100vh;
+
+background:
+linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+
+overflow-x:hidden;
+
+}
+
+
+/* ============================
+BACKGROUND GLOW
+============================ */
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+width:700px;
+height:700px;
+
+left:-220px;
+top:-220px;
+
+background:#60a5fa;
+
+filter:blur(180px);
+
+opacity:.28;
+
+z-index:-2;
+
+}
+
+body::after{
+
+content:"";
+
+position:fixed;
+
+width:650px;
+height:650px;
+
+right:-180px;
+bottom:-180px;
+
+background:#3b82f6;
+
+filter:blur(180px);
+
+opacity:.25;
+
+z-index:-2;
+
+}
+
+
+/* ============================
+NAVBAR
+============================ */
+
+.navbar-custom{
+
+width:100%;
+
+padding:22px 70px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(16px);
+
+border-bottom:1px solid rgba(255,255,255,.15);
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:30px;
+
+font-weight:800;
+
+color:white;
+
+}
+
+.logo img{
+
+width:42px;
+
+}
+
+.nav-left,
+.nav-right{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.nav-left a{
+
+text-decoration:none;
+
+color:white;
+
+font-size:18px;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.nav-left a:hover{
+
+color:#7dd3fc;
+
+}
+
+.profile-btn,
+.logout-btn{
+
+padding:12px 26px;
+
+border-radius:40px;
+
+font-weight:bold;
+
+text-decoration:none;
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+transition:.3s;
+
+}
+
+.profile-btn{
+
+background:white;
+
+color:#2563eb;
+
+}
+
+.logout-btn{
+
+background:#ef4444;
+
+color:white;
+
+}
+
+.profile-btn:hover,
+.logout-btn:hover{
+
+transform:translateY(-3px);
+
+color:inherit;
+
+}
+
+
+/* ============================
+HERO
+============================ */
+
+.hero{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:80px 70px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:60px;
+
+}
+
+.hero-left{
+
+flex:1;
+
+}
+
+.hero-right{
+
+flex:1;
+
+text-align:right;
+
+}
+
+.hero-right img{
+
+width:95%;
+
+max-width:620px;
+
+animation:floatImage 5s ease-in-out infinite;
+
+}
+
+@keyframes floatImage{
+
+0%{transform:translateY(0);}
+50%{transform:translateY(-18px);}
+100%{transform:translateY(0);}
+
+}
+    /* ============================
+TEXT
+============================ */
+
+.welcome{
+
+font-size:58px;
+
+font-weight:800;
+
+line-height:1.15;
+
+color:white;
+
+margin-bottom:25px;
+
+}
+
+.welcome span{
+
+color:#7dd3fc;
+
+}
+
+.subtitle{
+
+font-size:21px;
+
+line-height:1.8;
+
+color:rgba(255,255,255,.85);
+
+max-width:650px;
+
+margin-bottom:40px;
+
+}
+
+
+/* ============================
+START BUTTON
+============================ */
+
+.start-btn{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:14px;
+
+padding:18px 42px;
+
+border-radius:50px;
+
+background:white;
+
+color:#2563eb;
+
+text-decoration:none;
+
+font-size:22px;
+
+font-weight:700;
+
+transition:.35s;
+
+box-shadow:0 15px 35px rgba(0,0,0,.18);
+
+}
+
+.start-btn:hover{
+
+transform:translateY(-5px);
+
+background:#2563eb;
+
+color:white;
+
+}
+
+
+/* ============================
+STATISTICS
+============================ */
+
+.stats{
+
+margin-top:60px;
+
+display:flex;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.stat-card{
+
+width:180px;
+
+padding:30px;
+
+background:rgba(255,255,255,.10);
+
+backdrop-filter:blur(15px);
+
+border-radius:24px;
+
+border:1px solid rgba(255,255,255,.15);
+
+transition:.35s;
+
+text-align:center;
+
+}
+
+.stat-card:hover{
+
+transform:translateY(-8px);
+
+background:rgba(255,255,255,.18);
+
+}
+
+.stat-card h2{
+
+font-size:42px;
+
+font-weight:800;
+
+color:white;
+
+margin-bottom:8px;
+
+}
+
+.stat-card p{
+
+margin:0;
+
+font-size:17px;
+
+color:#dbeafe;
+
+}
+
+
+/* ============================
+RESPONSIVE
+============================ */
+
+@media(max-width:992px){
+
+.navbar-custom{
+
+padding:20px 25px;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.hero{
+
+padding:60px 25px;
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.hero-right{
+
+text-align:center;
+
+}
+
+.hero-right img{
+
+width:85%;
+
+}
+
+.stats{
+
+justify-content:center;
+
+}
+
+.subtitle{
+
+margin-left:auto;
+
+margin-right:auto;
+
+}
+
+}
+
+</style>
+    </head>
+
+<body>
+
+<!-- ============================
+NAVBAR
+============================ -->
+
+<nav class="navbar-custom">
+
+    <div class="logo">
+
+        <img src="{% static 'images/5692030.png' %}">
+
+        <span>Quizify</span>
+
+    </div>
+
+    <div class="nav-left">
+
+
+
+    </div>
+
+    <div class="nav-right">
+
+        <a href="{% url 'profile' %}" class="profile-btn">
+
+            <i class="bi bi-person-circle"></i>
+
+            View Profile
+
+        </a>
+
+        <a href="{% url 'logout' %}" class="logout-btn">
+
+            <i class="bi bi-box-arrow-right"></i>
+
+            Logout
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- ============================
+HERO SECTION
+============================ -->
+
+<section class="hero">
+
+    <!-- LEFT SIDE -->
+
+    <div class="hero-left">
+
+        <h1 class="welcome">
+
+            Welcome Back,
+
+            <span>{{ current_user.name }}</span>
+
+        </h1>
+
+        <p class="subtitle">
+
+            Ready to challenge yourself?
+
+            Test your knowledge across multiple categories,
+
+            improve your score, track your progress,
+
+            and become a Quizify champion.
+
+        </p>
+
+        <a href="{% url 'category' %}" class="start-btn">
+
+            <i class="bi bi-play-circle-fill"></i>
+
+            Start Quiz
+
+        </a>
+
+        <div class="stats">
+
+            <div class="stat-card">
+
+                <h2>
+
+                    {{ total_quizzes|default:"0" }}
+
+                </h2>
+
+                <p>
+
+                    Total Quizzes
+
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>
+
+                    {{ average_score|default:"0" }}
+
+                </h2>
+
+                <p>
+
+                    Average Score
+
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <h2>
+
+                    {{ best_score|default:"0" }}
+
+                </h2>
+
+                <p>
+
+                    Best Score
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+
+    <div class="hero-right">
+
+        <img
+
+        src="{% static 'images/userimg.png' %}"
+
+        alt="Dashboard Illustration">
+
+    </div>
+
+</section>
+
+<script>
+
+// ===============================
+// HERO FADE IN
+// ===============================
+
+window.addEventListener("load", function () {
+
+    document.querySelector(".hero-left").style.opacity = "0";
+    document.querySelector(".hero-left").style.transform = "translateX(-60px)";
+
+    document.querySelector(".hero-right").style.opacity = "0";
+    document.querySelector(".hero-right").style.transform = "translateX(60px)";
+
+    setTimeout(function(){
+
+        document.querySelector(".hero-left").style.transition = ".9s ease";
+
+        document.querySelector(".hero-left").style.opacity = "1";
+
+        document.querySelector(".hero-left").style.transform = "translateX(0)";
+
+    },200);
+
+    setTimeout(function(){
+
+        document.querySelector(".hero-right").style.transition = ".9s ease";
+
+        document.querySelector(".hero-right").style.opacity = "1";
+
+        document.querySelector(".hero-right").style.transform = "translateX(0)";
+
+    },500);
+
+});
+
+
+// ===============================
+// STAGGER ANIMATION FOR STATS
+// ===============================
+
+window.addEventListener("load",function(){
+
+    const cards=document.querySelectorAll(".stat-card");
+
+    cards.forEach(function(card,index){
+
+        card.style.opacity="0";
+
+        card.style.transform="translateY(40px)";
+
+        setTimeout(function(){
+
+            card.style.transition=".6s ease";
+
+            card.style.opacity="1";
+
+            card.style.transform="translateY(0)";
+
+        },900+(index*180));
+
+    });
+
+});
+
+
+// ===============================
+// BUTTON HOVER EFFECT
+// ===============================
+
+const buttons=document.querySelectorAll(".start-btn,.profile-btn,.logout-btn");
+
+buttons.forEach(function(btn){
+
+    btn.addEventListener("mouseenter",function(){
+
+        btn.style.transform="translateY(-4px) scale(1.03)";
+
+    });
+
+    btn.addEventListener("mouseleave",function(){
+
+        btn.style.transform="translateY(0) scale(1)";
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,2121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Quizify | Learn, Challenge & Master</title>
+
+<link rel="icon" type="image/png"
+href="{% static 'images/5692030.png' %}">
+
+<link rel="stylesheet"
+href="{% static 'css/bootstrap.min.css' %}">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+
+font-family:Arial,Helvetica,sans-serif;
+
+background:linear-gradient(135deg,#eef5ff,#dbeafe);
+
+overflow-x:hidden;
+
+}
+
+/*==========================
+NAVBAR
+==========================*/
+
+nav{
+
+position:fixed;
+
+top:18px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+width:92%;
+
+background:white;
+
+border-radius:25px;
+
+padding:16px 35px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+z-index:999;
+
+animation:navbar .8s ease;
+
+}
+
+@keyframes navbar{
+
+from{
+
+opacity:0;
+
+transform:translate(-50%,-40px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translate(-50%,0);
+
+}
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:34px;
+
+font-weight:800;
+
+color:#1e3a8a;
+
+}
+
+.logo img{
+
+width:48px;
+
+height:48px;
+
+}
+
+.right-nav{
+
+display:flex;
+
+align-items:center;
+
+gap:20px;
+
+}
+
+.right-nav a{
+
+text-decoration:none;
+
+font-size:18px;
+
+font-weight:600;
+
+color:#374151;
+
+transition:.3s;
+
+}
+
+.right-nav a:hover{
+
+color:#2563eb;
+
+}
+
+.login-btn{
+
+padding:12px 28px;
+
+border-radius:40px;
+
+background:#2563eb;
+
+color:white!important;
+
+}
+
+.login-btn:hover{
+
+background:#1d4ed8;
+
+}
+
+.register-btn{
+
+padding:12px 28px;
+
+border-radius:40px;
+
+border:2px solid #2563eb;
+
+color:#2563eb!important;
+
+}
+
+.register-btn:hover{
+
+background:#2563eb;
+
+color:white!important;
+
+}
+
+/*==========================
+HERO
+==========================*/
+
+.hero{
+
+max-width:1400px;
+
+margin:auto;
+
+padding:180px 40px 100px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:70px;
+
+}
+
+.left{
+
+flex:1;
+
+animation:leftFade 1s ease;
+
+}
+
+@keyframes leftFade{
+
+from{
+
+opacity:0;
+
+transform:translateX(-60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.tag{
+
+display:inline-flex;
+
+align-items:center;
+
+gap:10px;
+
+background:#dbeafe;
+
+color:#2563eb;
+
+padding:12px 22px;
+
+border-radius:40px;
+
+font-weight:bold;
+
+margin-bottom:25px;
+
+}
+
+.left h1{
+
+font-size:78px;
+
+font-weight:900;
+
+line-height:1.15;
+
+color:#111827;
+
+margin-bottom:25px;
+
+}
+
+.left h1 span{
+
+background:linear-gradient(90deg,#2563eb,#7c3aed);
+
+-webkit-background-clip:text;
+
+-webkit-text-fill-color:transparent;
+
+}
+
+.subtitle{
+
+font-size:23px;
+
+color:#6b7280;
+
+line-height:1.8;
+
+margin-bottom:40px;
+
+max-width:650px;
+
+}
+
+/*==========================
+BUTTONS
+==========================*/
+
+.hero-buttons{
+
+display:flex;
+
+gap:20px;
+
+margin-bottom:45px;
+
+}
+
+.hero-btn{
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+gap:12px;
+
+text-decoration:none;
+
+padding:18px 38px;
+
+font-size:22px;
+
+font-weight:bold;
+
+border-radius:50px;
+
+transition:.35s;
+
+}
+
+.hero-login{
+
+background:#2563eb;
+
+color:white;
+
+}
+
+.hero-login:hover{
+
+background:#1d4ed8;
+
+color:white;
+
+transform:translateY(-5px);
+
+}
+
+.hero-register{
+
+background:white;
+
+color:#111827;
+
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+}
+
+.hero-register:hover{
+
+transform:translateY(-5px);
+
+color:#111827;
+
+}
+
+/*==========================
+STATS
+==========================*/
+
+.hero-stats{
+
+display:flex;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.stat{
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+}
+
+.stat-icon{
+
+width:65px;
+
+height:65px;
+
+border-radius:18px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:30px;
+
+}
+
+.blue{
+
+background:#dbeafe;
+
+color:#2563eb;
+
+}
+
+.green{
+
+background:#dcfce7;
+
+color:#16a34a;
+
+}
+
+.orange{
+
+background:#fff7ed;
+
+color:#f59e0b;
+
+}
+
+.stat h2{
+
+margin:0;
+
+font-size:34px;
+
+font-weight:800;
+
+}
+
+.stat p{
+
+margin:0;
+
+color:#6b7280;
+
+font-weight:600;
+
+}
+
+/*==========================
+RIGHT SIDE
+==========================*/
+
+.right{
+
+flex:1;
+
+position:relative;
+
+display:flex;
+
+justify-content:center;
+
+animation:rightFade 1s ease;
+
+}
+
+@keyframes rightFade{
+
+from{
+
+opacity:0;
+
+transform:translateX(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+.bg-blob{
+
+position:absolute;
+
+width:700px;
+
+height:500px;
+
+background:radial-gradient(circle,#c4b5fd,#dbeafe);
+
+border-radius:45%;
+
+filter:blur(5px);
+
+opacity:.7;
+
+z-index:-1;
+
+}
+
+/*==========================
+QUIZ CARD
+==========================*/
+
+.quiz-card{
+
+background:white;
+
+width:480px;
+
+border-radius:30px;
+
+padding:35px;
+
+box-shadow:0 25px 60px rgba(0,0,0,.12);
+
+}
+
+.quiz-card h3{
+
+font-size:34px;
+
+font-weight:800;
+
+margin-bottom:30px;
+
+}
+
+.option{
+
+border:2px solid #e5e7eb;
+
+padding:18px;
+
+border-radius:16px;
+
+margin-bottom:16px;
+
+font-size:20px;
+
+display:flex;
+
+align-items:center;
+
+gap:18px;
+
+transition:.3s;
+
+}
+
+.option.correct{
+
+background:#ecfdf5;
+
+border-color:#16a34a;
+
+}
+
+.circle{
+
+width:38px;
+
+height:38px;
+
+border-radius:50%;
+
+background:#eef2ff;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-weight:bold;
+
+}
+
+/*==========================
+BOOKS
+==========================*/
+
+.books{
+
+position:absolute;
+
+right:20px;
+
+bottom:-40px;
+
+font-size:120px;
+
+}
+
+/*==========================
+FLOATING ICONS
+==========================*/
+
+.float{
+
+position:absolute;
+
+font-size:70px;
+
+animation:float 3s ease-in-out infinite;
+
+}
+
+.float.one{
+
+left:0;
+
+top:30px;
+
+}
+
+.float.two{
+
+right:0;
+
+top:-10px;
+
+animation-delay:1s;
+
+}
+
+.float.three{
+
+left:60px;
+
+bottom:40px;
+
+animation-delay:2s;
+
+}
+
+@keyframes float{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-18px);
+
+}
+
+}
+    /*==================================================
+CATEGORY SECTION
+==================================================*/
+
+.categories-section{
+
+padding:90px 40px;
+
+background:white;
+
+}
+
+.section-header{
+
+text-align:center;
+
+margin-bottom:60px;
+
+}
+
+.section-header h2{
+
+font-size:52px;
+
+font-weight:800;
+
+color:#1e3a8a;
+
+margin-bottom:15px;
+
+}
+
+.section-header p{
+
+font-size:21px;
+
+color:#6b7280;
+
+}
+
+.category-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+
+gap:30px;
+
+}
+
+.category-card{
+
+background:white;
+
+padding:35px;
+
+border-radius:25px;
+
+text-align:center;
+
+box-shadow:0 15px 35px rgba(0,0,0,.08);
+
+transition:.35s;
+
+cursor:pointer;
+
+border:2px solid transparent;
+
+}
+
+.category-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 20px 45px rgba(37,99,235,.18);
+
+border-color:#2563eb;
+
+}
+
+.category-icon{
+
+width:90px;
+
+height:90px;
+
+margin:auto;
+
+margin-bottom:25px;
+
+border-radius:22px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:42px;
+
+color:white;
+
+}
+
+.science{
+
+background:linear-gradient(135deg,#22c55e,#16a34a);
+
+}
+
+.maths{
+
+background:linear-gradient(135deg,#2563eb,#3b82f6);
+
+}
+
+.gk{
+
+background:linear-gradient(135deg,#f59e0b,#fb923c);
+
+}
+
+.cs{
+
+background:linear-gradient(135deg,#7c3aed,#9333ea);
+
+}
+
+.history{
+
+background:linear-gradient(135deg,#ef4444,#dc2626);
+
+}
+
+.category-card h3{
+
+font-size:28px;
+
+font-weight:800;
+
+margin-bottom:12px;
+
+}
+
+.category-card p{
+
+font-size:17px;
+
+color:#6b7280;
+
+min-height:55px;
+
+}
+
+.question-count{
+
+margin-top:20px;
+
+display:inline-block;
+
+padding:10px 22px;
+
+background:#eef5ff;
+
+color:#2563eb;
+
+font-weight:700;
+
+border-radius:30px;
+
+}
+    /*==================================================
+WHY CHOOSE QUIZIFY
+==================================================*/
+
+.features-section{
+
+padding:100px 40px;
+
+background:linear-gradient(135deg,#0f172a,#1e3a8a);
+
+color:white;
+
+}
+
+.features-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+
+gap:30px;
+
+margin-top:60px;
+
+}
+
+.feature-card{
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(12px);
+
+padding:35px;
+
+border-radius:25px;
+
+text-align:center;
+
+transition:.35s;
+
+}
+
+.feature-card:hover{
+
+transform:translateY(-10px);
+
+background:rgba(255,255,255,.14);
+
+}
+
+.feature-icon{
+
+width:85px;
+
+height:85px;
+
+margin:auto;
+
+margin-bottom:25px;
+
+border-radius:20px;
+
+background:#2563eb;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:38px;
+
+}
+
+.feature-card h3{
+
+font-size:28px;
+
+font-weight:700;
+
+margin-bottom:15px;
+
+}
+
+.feature-card p{
+
+font-size:17px;
+
+line-height:1.7;
+
+color:#dbeafe;
+
+}
+
+.stats-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+
+gap:30px;
+
+margin-top:80px;
+
+}
+
+.stat-item{
+
+text-align:center;
+
+}
+
+.stat-item h2{
+
+font-size:60px;
+
+font-weight:800;
+
+color:#60a5fa;
+
+margin-bottom:10px;
+
+}
+
+.stat-item p{
+
+font-size:20px;
+
+color:#e2e8f0;
+
+}
+    /*=========================================
+CALL TO ACTION
+=========================================*/
+
+.cta-section{
+
+padding:100px 40px;
+
+background:#eef5ff;
+
+}
+
+.cta-box{
+
+background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+padding:70px;
+
+border-radius:35px;
+
+text-align:center;
+
+color:white;
+
+box-shadow:0 25px 50px rgba(37,99,235,.25);
+
+}
+
+.cta-box h2{
+
+font-size:54px;
+
+font-weight:800;
+
+margin-bottom:20px;
+
+}
+
+.cta-box p{
+
+font-size:22px;
+
+max-width:850px;
+
+margin:auto;
+
+line-height:1.8;
+
+margin-bottom:40px;
+
+}
+
+.cta-buttons{
+
+display:flex;
+
+justify-content:center;
+
+gap:25px;
+
+flex-wrap:wrap;
+
+}
+
+.cta-btn{
+
+padding:18px 40px;
+
+border-radius:50px;
+
+text-decoration:none;
+
+font-size:22px;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.login-cta{
+
+background:white;
+
+color:#2563eb;
+
+}
+
+.login-cta:hover{
+
+transform:translateY(-5px);
+
+color:#2563eb;
+
+}
+
+.register-cta{
+
+background:#111827;
+
+color:white;
+
+}
+
+.register-cta:hover{
+
+transform:translateY(-5px);
+
+color:white;
+
+}
+
+
+/*=========================================
+FOOTER
+=========================================*/
+
+footer{
+
+background:#0f172a;
+
+padding:80px 40px 30px;
+
+color:white;
+
+}
+
+.footer-grid{
+
+display:grid;
+
+grid-template-columns:2fr 1fr 1fr 1fr;
+
+gap:50px;
+
+}
+
+.footer-logo{
+
+display:flex;
+
+align-items:center;
+
+gap:12px;
+
+font-size:34px;
+
+font-weight:800;
+
+margin-bottom:20px;
+
+}
+
+.footer-text{
+
+line-height:1.8;
+
+color:#cbd5e1;
+
+}
+
+footer h4{
+
+margin-bottom:20px;
+
+font-weight:700;
+
+}
+
+footer ul{
+
+list-style:none;
+
+padding:0;
+
+}
+
+footer li{
+
+margin-bottom:12px;
+
+color:#cbd5e1;
+
+}
+
+footer a{
+
+text-decoration:none;
+
+color:#cbd5e1;
+
+transition:.3s;
+
+}
+
+footer a:hover{
+
+color:white;
+
+}
+
+.social-icons{
+
+display:flex;
+
+gap:18px;
+
+margin-top:15px;
+
+}
+
+.social-icons a{
+
+width:48px;
+
+height:48px;
+
+border-radius:50%;
+
+background:#1e293b;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:22px;
+
+transition:.3s;
+
+}
+
+.social-icons a:hover{
+
+background:#2563eb;
+
+transform:translateY(-5px);
+
+}
+
+footer hr{
+
+margin:50px 0 25px;
+
+border-color:#334155;
+
+}
+
+.copyright{
+
+text-align:center;
+
+color:#94a3b8;
+
+font-size:17px;
+
+}
+
+
+/*=========================================
+RESPONSIVE
+=========================================*/
+
+@media(max-width:992px){
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.hero-buttons{
+
+justify-content:center;
+
+}
+
+.hero-stats{
+
+justify-content:center;
+
+}
+
+.footer-grid{
+
+grid-template-columns:1fr;
+
+text-align:center;
+
+}
+
+.footer-logo{
+
+justify-content:center;
+
+}
+
+.social-icons{
+
+justify-content:center;
+
+}
+
+.cta-box{
+
+padding:45px 25px;
+
+}
+
+.left h1{
+
+font-size:58px;
+
+}
+
+.section-header h2{
+
+font-size:42px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">
+
+<img src="{% static 'images/5692030.png' %}">
+
+Quizify
+
+</div>
+
+<div class="right-nav">
+
+<a href="{% url 'about' %}">About</a>
+
+<a href="{% url 'contact' %}">Contact Us</a>
+
+<a href="{% url 'login' %}" class="login-btn">
+Login
+</a>
+
+<a href="{% url 'register' %}" class="register-btn">
+Register
+</a>
+
+</div>
+
+</nav>
+
+<section class="hero">
+
+<div class="left">
+
+<div class="tag">
+
+<i class="bi bi-mortarboard-fill"></i>
+
+Challenge Your Knowledge
+
+</div>
+
+<h1>
+
+Learn,
+
+Challenge &
+
+<span>Master</span>
+
+with Quizify
+
+</h1>
+
+<p class="subtitle">
+
+Join hundreds of learners who are improving their knowledge through interactive quizzes.
+
+Practice across multiple categories, monitor your performance and become a Quiz Champion.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="{% url 'login' %}" class="hero-btn hero-login">
+
+<i class="bi bi-box-arrow-in-right"></i>
+
+Login
+
+</a>
+
+<a href="{% url 'register' %}" class="hero-btn hero-register">
+
+<i class="bi bi-person-plus-fill"></i>
+
+Register
+
+</a>
+
+</div>
+
+<div class="hero-stats">
+
+<div class="stat">
+
+<div class="stat-icon blue">
+
+<i class="bi bi-people-fill"></i>
+
+</div>
+
+<div>
+
+<h2>100+</h2>
+
+<p>Users</p>
+
+</div>
+
+</div>
+
+<div class="stat">
+
+<div class="stat-icon green">
+
+<i class="bi bi-journal-check"></i>
+
+</div>
+
+<div>
+
+<h2>500+</h2>
+
+<p>Quiz Attempts</p>
+
+</div>
+
+</div>
+
+<div class="stat">
+
+<div class="stat-icon orange">
+
+<i class="bi bi-trophy-fill"></i>
+
+</div>
+
+<div>
+
+<h2>30/30</h2>
+
+<p>Highest Score</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="right">
+
+<div class="bg-blob"></div>
+
+<div class="float one">❓</div>
+
+<div class="float two">💡</div>
+
+<div class="float three">🧠</div>
+
+<div class="quiz-card">
+
+<h3>
+
+Which planet is known as the Red Planet?
+
+</h3>
+
+<div class="option">
+
+<div class="circle">
+
+A
+
+</div>
+
+Earth
+
+</div>
+
+<div class="option correct">
+
+<div class="circle">
+
+B
+
+</div>
+
+Mars
+
+<i class="bi bi-check-circle-fill ms-auto text-success"></i>
+
+</div>
+
+<div class="option">
+
+<div class="circle">
+
+C
+
+</div>
+
+Jupiter
+
+</div>
+
+<div class="option">
+
+<div class="circle">
+
+D
+
+</div>
+
+Venus
+
+</div>
+
+</div>
+
+<div class="books">
+
+📚
+
+</div>
+
+</div>
+
+</section>
+<!-- =====================================================
+EXPLORE CATEGORIES
+===================================================== -->
+
+<section class="categories-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>
+Explore Quiz Categories
+</h2>
+
+<p>
+Choose your favourite category and challenge your knowledge.
+</p>
+
+</div>
+
+<div class="category-grid">
+
+<!-- SCIENCE -->
+
+<div class="category-card">
+
+<div class="category-icon science">
+
+<i class="bi bi-microscope"></i>
+
+</div>
+
+<h3>Science</h3>
+
+<p>
+
+Physics, Chemistry and Biology
+
+</p>
+
+<div class="question-count">
+
+450+ Questions
+
+</div>
+
+</div>
+
+<!-- MATHEMATICS -->
+
+<div class="category-card">
+
+<div class="category-icon maths">
+
+<i class="bi bi-calculator"></i>
+
+</div>
+
+<h3>Mathematics</h3>
+
+<p>
+
+Arithmetic, Algebra and Geometry
+
+</p>
+
+<div class="question-count">
+
+450+ Questions
+
+</div>
+
+</div>
+
+<!-- GENERAL KNOWLEDGE -->
+
+<div class="category-card">
+
+<div class="category-icon gk">
+
+<i class="bi bi-globe2"></i>
+
+</div>
+
+<h3>General Knowledge</h3>
+
+<p>
+
+Current Affairs & World Facts
+
+</p>
+
+<div class="question-count">
+
+450+ Questions
+
+</div>
+
+</div>
+
+<!-- COMPUTER SCIENCE -->
+
+<div class="category-card">
+
+<div class="category-icon cs">
+
+<i class="bi bi-pc-display"></i>
+
+</div>
+
+<h3>Computer Science</h3>
+
+<p>
+
+Programming & Technology
+
+</p>
+
+<div class="question-count">
+
+450+ Questions
+
+</div>
+
+</div>
+
+<!-- HISTORY -->
+
+<div class="category-card">
+
+<div class="category-icon history">
+
+<i class="bi bi-book-half"></i>
+
+</div>
+
+<h3>History</h3>
+
+<p>
+
+Ancient, Medieval & Modern
+
+</p>
+
+<div class="question-count">
+
+450+ Questions
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- =====================================================
+WHY CHOOSE QUIZIFY
+===================================================== -->
+
+<section class="features-section">
+
+<div class="container">
+
+<div class="section-header text-white">
+
+<h2>
+Why Choose Quizify?
+</h2>
+
+<p>
+An interactive platform designed to make learning enjoyable,
+competitive and rewarding.
+</p>
+
+</div>
+
+<div class="features-grid">
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="bi bi-lightning-charge-fill"></i>
+
+</div>
+
+<h3>Fast & Responsive</h3>
+
+<p>
+
+Enjoy smooth navigation and lightning-fast quiz experience
+across all devices.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="bi bi-clock-history"></i>
+
+</div>
+
+<h3>Timed Quizzes</h3>
+
+<p>
+
+Challenge yourself with timed quizzes that improve speed,
+accuracy and confidence.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="bi bi-bar-chart-line-fill"></i>
+
+</div>
+
+<h3>Performance Tracking</h3>
+
+<p>
+
+Monitor your quiz history, scores,
+average percentage and overall progress.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="feature-icon">
+
+<i class="bi bi-trophy-fill"></i>
+
+</div>
+
+<h3>Challenge Yourself</h3>
+
+<p>
+
+Compete against yourself and achieve
+higher scores every time you play.
+
+</p>
+
+</div>
+
+</div>
+
+
+<!-- Statistics -->
+
+<div class="stats-grid">
+
+<div class="stat-item">
+
+<h2>5</h2>
+
+<p>Quiz Categories</p>
+
+</div>
+
+<div class="stat-item">
+
+<h2>75+</h2>
+
+<p>Questions Available</p>
+
+</div>
+
+<div class="stat-item">
+
+<h2>3</h2>
+
+<p>Difficulty Levels</p>
+
+</div>
+
+<div class="stat-item">
+
+<h2>100%</h2>
+
+<p>Free to Use</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- =====================================================
+CALL TO ACTION
+===================================================== -->
+
+<section class="cta-section">
+
+<div class="container">
+
+<div class="cta-box">
+
+<h2>
+
+Ready to Challenge Yourself?
+
+</h2>
+
+<p>
+
+Join Quizify today and start improving your knowledge with exciting quizzes across multiple categories.
+
+</p>
+
+<div class="cta-buttons">
+
+<a href="{% url 'login' %}" class="cta-btn login-cta">
+
+<i class="bi bi-box-arrow-in-right me-2"></i>
+
+Login
+
+</a>
+
+<a href="{% url 'register' %}" class="cta-btn register-cta">
+
+<i class="bi bi-person-plus-fill me-2"></i>
+
+Register
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<div class="footer-grid">
+
+<!-- Logo -->
+
+<div>
+
+<div class="footer-logo">
+
+<img src="{% static 'images/5692030.png' %}" width="45">
+
+Quizify
+
+</div>
+
+<p class="footer-text">
+
+Quizify is an interactive online quiz platform developed using
+Python, Django and Bootstrap to make learning enjoyable,
+competitive and rewarding.
+
+</p>
+
+</div>
+
+<!-- Quick Links -->
+
+<div>
+
+<h4>Quick Links</h4>
+
+<ul>
+
+<li>
+
+<a href="{% url 'about' %}">
+
+About
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'contact' %}">
+
+Contact Us
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'login' %}">
+
+Login
+
+</a>
+
+</li>
+
+<li>
+
+<a href="{% url 'register' %}">
+
+Register
+
+</a>
+
+</li>
+
+</ul>
+
+</div>
+
+<!-- Categories -->
+
+<div>
+
+<h4>Categories</h4>
+
+<ul>
+
+<li>Science</li>
+
+<li>Mathematics</li>
+
+<li>General Knowledge</li>
+
+<li>Computer Science</li>
+
+<li>History</li>
+
+</ul>
+
+</div>
+
+<!-- Social -->
+
+<div>
+
+<h4>Connect</h4>
+
+<div class="social-icons">
+
+<a href="#">
+
+<i class="bi bi-facebook"></i>
+
+</a>
+
+<a href="#">
+
+<i class="bi bi-instagram"></i>
+
+</a>
+
+<a href="#">
+
+<i class="bi bi-linkedin"></i>
+
+</a>
+
+<a href="#">
+
+<i class="bi bi-github"></i>
+
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="copyright">
+
+© 2026 Quizify. All Rights Reserved.
+
+</div>
+
+</div>
+
+</footer>
+
+
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+
+<script>
+
+// =============================
+// CARD ANIMATION
+// =============================
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0px)";
+
+}
+
+});
+
+});
+
+document.querySelectorAll(".category-card,.feature-card").forEach(card=>{
+
+card.style.opacity="0";
+
+card.style.transform="translateY(40px)";
+
+card.style.transition=".8s";
+
+observer.observe(card);
+
+});
+
+
+// =============================
+// COUNTER ANIMATION
+// =============================
+
+const counters=document.querySelectorAll(".stat-item h2");
+
+let started=false;
+
+window.addEventListener("scroll",function(){
+
+const section=document.querySelector(".stats-grid");
+
+if(!started && window.scrollY>section.offsetTop-500){
+
+started=true;
+
+counters.forEach(counter=>{
+
+let target=parseInt(counter.innerText);
+
+let current=0;
+
+let speed=Math.ceil(target/40);
+
+let interval=setInterval(function(){
+
+current+=speed;
+
+if(current>=target){
+
+counter.innerText=counter.innerText.includes("%")?
+
+target+"%":target+(counter.innerText.includes("+")?"+":"");
+
+clearInterval(interval);
+
+}else{
+
+counter.innerText=current;
+
+}
+
+},30);
+
+});
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>

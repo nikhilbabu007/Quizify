@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+
+<script>
+
+alert("Message sent successfully!");
+
+window.location.href="{% url 'home' %}";
+    setTimeout(function () {
+    window.location.href = "{% url 'home' %}";
+}, 3000);
+
+</script>
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+
+            background:
+                linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.60)),
+                url("{% static 'images/ChatGPT Image Jul 24, 2026, 04_23_12 PM.png' %}");
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+        }
+</style>
+
+</head>
+
+<body>
+
+</body>
+
+</html>

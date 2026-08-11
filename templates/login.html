@@ -1,0 +1,1255 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Quizify | Login</title>
+
+<link rel="icon"
+      href="{% static 'images/5692030.png' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/bootstrap.min.css' %}">
+
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+
+}
+
+body{
+
+min-height:100vh;
+
+background:linear-gradient(
+135deg,
+#eef5ff,
+#dbeafe,
+#edf4ff
+);
+
+overflow:hidden;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+position:relative;
+
+}
+
+/* =====================================
+BACKGROUND BLOBS
+===================================== */
+
+.blob{
+
+position:absolute;
+
+border-radius:50%;
+
+filter:blur(50px);
+
+opacity:.45;
+
+z-index:0;
+
+}
+
+.blob1{
+
+width:350px;
+height:350px;
+
+background:#6ea8fe;
+
+left:-120px;
+top:-120px;
+
+}
+
+.blob2{
+
+width:300px;
+height:300px;
+
+background:#b197fc;
+
+right:-80px;
+top:120px;
+
+}
+
+.blob3{
+
+width:250px;
+height:250px;
+
+background:#74c0fc;
+
+bottom:-80px;
+left:40%;
+
+}
+
+/* =====================================
+MAIN CONTAINER
+===================================== */
+
+.wrapper{
+
+width:1200px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+position:relative;
+
+z-index:2;
+
+}
+
+/* =====================================
+LEFT SIDE
+===================================== */
+
+.left-side{
+
+width:42%;
+
+}
+
+.logo{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+margin-bottom:30px;
+
+}
+
+.logo img{
+
+width:60px;
+
+}
+
+.logo h1{
+
+font-size:44px;
+
+font-weight:800;
+
+color:#1e3a8a;
+
+margin:0;
+
+}
+
+.tagline{
+
+font-size:22px;
+
+color:#475569;
+
+margin-bottom:40px;
+
+line-height:1.8;
+
+}
+
+.illustration{
+
+text-align:center;
+
+margin-top:30px;
+
+}
+
+.illustration img{
+
+width:90%;
+
+max-width:420px;
+
+}
+
+/* =====================================
+RIGHT SIDE
+===================================== */
+
+.right-side{
+
+width:430px;
+
+}
+
+.login-card{
+
+background:white;
+
+border-radius:35px;
+
+padding:50px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.12);
+
+position:relative;
+
+}
+
+.login-icon{
+
+width:110px;
+
+height:110px;
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#4f46e5
+);
+
+border-radius:50%;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+margin:auto;
+
+margin-top:-95px;
+
+box-shadow:0 10px 30px rgba(37,99,235,.35);
+
+}
+
+.login-icon i{
+
+font-size:50px;
+
+color:white;
+
+}
+
+.login-title{
+
+text-align:center;
+
+margin-top:25px;
+
+font-size:42px;
+
+font-weight:800;
+
+color:#1e293b;
+
+}
+
+.login-subtitle{
+
+text-align:center;
+
+color:#64748b;
+
+font-size:18px;
+
+margin-top:10px;
+
+margin-bottom:35px;
+
+}
+    /*=====================================
+INPUTS
+=====================================*/
+
+.input-group-custom{
+
+display:flex;
+
+align-items:center;
+
+background:#f8fafc;
+
+border:2px solid #e2e8f0;
+
+border-radius:16px;
+
+margin-bottom:22px;
+
+padding:0 18px;
+
+transition:.3s;
+
+}
+
+.input-group-custom:focus-within{
+
+border-color:#2563eb;
+
+box-shadow:0 0 0 5px rgba(37,99,235,.12);
+
+}
+
+.input-icon{
+
+font-size:22px;
+
+color:#64748b;
+
+margin-right:15px;
+
+}
+
+.input-group-custom input{
+
+border:none;
+
+outline:none;
+
+background:none;
+
+width:100%;
+
+padding:18px 0;
+
+font-size:18px;
+
+}
+
+
+/*=====================================
+LOGIN OPTIONS
+=====================================*/
+
+.login-options{
+
+display:flex;
+
+justify-content:flex-end;
+
+margin-top:-5px;
+
+margin-bottom:28px;
+
+}
+
+.login-options a{
+
+text-decoration:none;
+
+font-weight:600;
+
+color:#2563eb;
+
+transition:.3s;
+
+}
+
+.login-options a:hover{
+
+color:#1d4ed8;
+
+}
+
+
+/*=====================================
+LOGIN BUTTON
+=====================================*/
+
+.login-btn{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:16px;
+
+background:linear-gradient(
+135deg,
+#2563eb,
+#4f46e5
+);
+
+color:white;
+
+font-size:20px;
+
+font-weight:700;
+
+cursor:pointer;
+
+transition:.3s;
+
+box-shadow:0 12px 25px rgba(37,99,235,.30);
+
+}
+
+.login-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 18px 35px rgba(37,99,235,.40);
+
+}
+
+
+/*=====================================
+REGISTER
+=====================================*/
+
+.register-text{
+
+margin-top:35px;
+
+text-align:center;
+
+font-size:17px;
+
+color:#64748b;
+
+}
+
+.register-text a{
+
+text-decoration:none;
+
+font-weight:700;
+
+color:#2563eb;
+
+margin-left:5px;
+
+}
+
+.register-text a:hover{
+
+text-decoration:underline;
+
+}
+
+
+/*=====================================
+ERROR
+=====================================*/
+
+.error-box{
+
+margin-top:25px;
+
+padding:15px;
+
+background:#fee2e2;
+
+border-radius:14px;
+
+color:#dc2626;
+
+font-weight:600;
+
+text-align:center;
+
+}
+
+
+/*=====================================
+BACK BUTTON
+=====================================*/
+
+.back-home{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+gap:10px;
+
+margin-top:30px;
+
+text-decoration:none;
+
+font-weight:700;
+
+color:#475569;
+
+transition:.3s;
+
+}
+
+.back-home:hover{
+
+color:#2563eb;
+
+}
+    /* =====================================
+FLOATING DECORATIONS
+===================================== */
+
+.floating{
+
+position:absolute;
+
+border-radius:20px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+color:white;
+
+font-size:28px;
+
+font-weight:bold;
+
+box-shadow:0 15px 35px rgba(0,0,0,.12);
+
+animation:float 5s ease-in-out infinite;
+
+z-index:1;
+
+}
+
+.float1{
+
+width:70px;
+
+height:70px;
+
+background:linear-gradient(135deg,#7c3aed,#6366f1);
+
+left:180px;
+
+top:120px;
+
+animation-delay:0s;
+
+transform:rotate(-12deg);
+
+}
+
+.float2{
+
+width:70px;
+
+height:70px;
+
+background:linear-gradient(135deg,#60a5fa,#2563eb);
+
+left:420px;
+
+bottom:140px;
+
+animation-delay:1.5s;
+
+transform:rotate(10deg);
+
+}
+
+.float3{
+
+width:60px;
+
+height:60px;
+
+background:linear-gradient(135deg,#f59e0b,#fbbf24);
+
+right:520px;
+
+top:180px;
+
+animation-delay:3s;
+
+border-radius:50%;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-18px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+
+/* =====================================
+CARD ANIMATION
+===================================== */
+
+.login-card{
+
+animation:slideUp .9s ease;
+
+}
+
+@keyframes slideUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* =====================================
+LOGO ANIMATION
+===================================== */
+
+.logo{
+
+animation:fadeLeft 1s ease;
+
+}
+
+.tagline{
+
+animation:fadeLeft 1.3s ease;
+
+}
+
+.illustration{
+
+animation:fadeLeft 1.6s ease;
+
+}
+
+@keyframes fadeLeft{
+
+from{
+
+opacity:0;
+
+transform:translateX(-60px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+
+/* =====================================
+INPUT HOVER
+===================================== */
+
+.input-group-custom:hover{
+
+transform:translateY(-2px);
+
+}
+
+
+/* =====================================
+BUTTON EFFECT
+===================================== */
+
+.login-btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.login-btn::after{
+
+content:"";
+
+position:absolute;
+
+left:-120%;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.25);
+
+transform:skewX(-25deg);
+
+transition:.7s;
+
+}
+
+.login-btn:hover::after{
+
+left:130%;
+
+}
+
+
+/* =====================================
+ILLUSTRATION
+===================================== */
+
+.illustration img{
+
+animation:floatImage 6s ease-in-out infinite;
+
+filter:drop-shadow(0 20px 35px rgba(0,0,0,.18));
+
+}
+
+@keyframes floatImage{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-18px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+
+/* =====================================
+RESPONSIVE
+===================================== */
+
+@media(max-width:1000px){
+
+.wrapper{
+
+width:100%;
+
+padding:40px;
+
+flex-direction:column;
+
+gap:50px;
+
+}
+
+.left-side{
+
+width:100%;
+
+text-align:center;
+
+}
+
+.logo{
+
+justify-content:center;
+
+}
+
+.right-side{
+
+width:100%;
+
+max-width:470px;
+
+}
+
+.floating{
+
+display:none;
+
+}
+
+.blob{
+
+opacity:.25;
+
+}
+
+}
+
+@media(max-width:576px){
+
+body{
+
+padding:20px;
+
+}
+
+.login-card{
+
+padding:35px;
+
+}
+
+.login-title{
+
+font-size:34px;
+
+}
+
+.login-subtitle{
+
+font-size:16px;
+
+}
+
+.logo h1{
+
+font-size:34px;
+
+}
+
+.tagline{
+
+font-size:18px;
+
+}
+
+}
+/*=========================================
+SUBTLE GRID BACKGROUND
+=========================================*/
+
+body::before{
+
+content:"";
+
+position:fixed;
+
+inset:0;
+
+background-image:
+
+linear-gradient(rgba(255,255,255,.15) 1px,transparent 1px),
+
+linear-gradient(90deg,rgba(255,255,255,.15) 1px,transparent 1px);
+
+background-size:40px 40px;
+
+opacity:.35;
+
+pointer-events:none;
+
+z-index:0;
+
+}
+
+
+/*=========================================
+GLASS SHADOW
+=========================================*/
+
+.login-card{
+
+border:1px solid rgba(255,255,255,.45);
+
+backdrop-filter:blur(8px);
+
+}
+
+
+/*=========================================
+SMOOTH TRANSITIONS
+=========================================*/
+
+*{
+
+transition:
+
+background-color .25s,
+
+color .25s,
+
+transform .25s,
+
+box-shadow .25s;
+
+}
+
+
+/*=========================================
+INPUT PLACEHOLDER
+=========================================*/
+
+.input-group-custom input::placeholder{
+
+color:#94a3b8;
+
+font-weight:500;
+
+}
+
+
+/*=========================================
+INPUT AUTOFILL FIX
+=========================================*/
+
+input:-webkit-autofill{
+
+-webkit-box-shadow:0 0 0 1000px #f8fafc inset;
+
+-webkit-text-fill-color:#1e293b;
+
+}
+
+
+/*=========================================
+REGISTER LINK
+=========================================*/
+
+.register-text a{
+
+position:relative;
+
+}
+
+.register-text a::after{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+bottom:-2px;
+
+width:0;
+
+height:2px;
+
+background:#2563eb;
+
+transition:.3s;
+
+}
+
+.register-text a:hover::after{
+
+width:100%;
+
+}
+
+
+/*=========================================
+BACK BUTTON
+=========================================*/
+
+.back-home{
+
+padding-top:10px;
+
+font-size:16px;
+
+}
+
+
+/*=========================================
+BUTTON CLICK
+=========================================*/
+
+.login-btn:active{
+
+transform:scale(.98);
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="blob blob1"></div>
+
+<div class="blob blob2"></div>
+
+<div class="blob blob3"></div>
+<div class="floating float1">
+    <i class="bi bi-question-lg"></i>
+</div>
+
+<div class="floating float2">
+    <i class="bi bi-journal-check"></i>
+</div>
+
+<div class="floating float3">
+    <i class="bi bi-stars"></i>
+</div>
+
+<div class="wrapper">
+
+<!-- LEFT -->
+
+<div class="left-side">
+
+<div class="logo">
+
+<img src="{% static 'images/5692030.png' %}">
+
+<h1>Quizify</h1>
+
+</div>
+
+<p class="tagline">
+
+
+
+<br><br>
+
+Sharpen your knowledge through beautifully designed quizzes,
+track your progress,
+and compete with yourself every day.
+
+</p>
+
+<div class="illustration">
+
+<img src="{% static 'images/login-aanii2.png' %}">
+
+</div>
+
+</div>
+
+<!-- RIGHT -->
+
+<div class="right-side">
+
+<div class="login-card">
+
+<div class="login-icon">
+
+<i class="bi bi-shield-lock-fill"></i>
+
+</div>
+
+<h2 class="login-title">
+
+Welcome Back!
+
+</h2>
+
+<p class="login-subtitle">
+
+Login to continue your learning journey.
+
+</p>
+
+<!-- Form goes here in Part 2 -->
+<form method="POST">
+
+{% csrf_token %}
+
+<!-- USERNAME -->
+
+<div class="input-group-custom">
+
+<div class="input-icon">
+
+<i class="bi bi-person"></i>
+
+</div>
+
+<input
+type="text"
+name="username"
+placeholder="Username"
+required>
+
+</div>
+
+
+<!-- PASSWORD -->
+
+<div class="input-group-custom">
+
+<div class="input-icon">
+
+<i class="bi bi-lock"></i>
+
+</div>
+
+<input
+type="password"
+name="password"
+placeholder="Password"
+required>
+
+</div>
+
+
+<!-- FORGOT PASSWORD -->
+
+<div class="login-options">
+
+<a href="{% url 'forgot_password' %}">
+
+Forgot Password?
+
+</a>
+
+</div>
+
+
+<!-- LOGIN BUTTON -->
+
+<button type="submit" class="login-btn">
+
+<i class="bi bi-box-arrow-in-right"></i>
+
+&nbsp;&nbsp;
+
+Login
+
+</button>
+
+</form>
+
+
+<!-- REGISTER -->
+
+<div class="register-text">
+
+Don't have an account?
+
+<a href="{% url 'register' %}">
+
+Register here
+
+</a>
+
+</div>
+
+
+<!-- ERROR -->
+
+{% if msg %}
+
+<div class="error-box">
+
+<i class="bi bi-exclamation-circle-fill"></i>
+
+{{ msg }}
+
+</div>
+
+{% endif %}
+
+
+<!-- BACK BUTTON -->
+
+<a href="{% url 'home' %}" class="back-home">
+
+<i class="bi bi-arrow-left-circle-fill"></i>
+
+Back to Home
+
+</a>
+</div>
+
+</div>
+
+</div>
+<script>
+
+// Autofocus username
+
+window.onload=function(){
+
+const username=document.querySelector("input[name='username']");
+
+if(username){
+
+username.focus();
+
+}
+
+};
+
+
+// Small hover effect for icon
+
+const icon=document.querySelector(".login-icon");
+
+if(icon){
+
+icon.addEventListener("mouseenter",function(){
+
+icon.style.transform="scale(1.08) rotate(8deg)";
+
+});
+
+icon.addEventListener("mouseleave",function(){
+
+icon.style.transform="scale(1) rotate(0deg)";
+
+});
+
+}
+
+</script>
+
+</body>
+</html>

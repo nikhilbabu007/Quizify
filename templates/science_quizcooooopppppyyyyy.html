@@ -1,0 +1,1839 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Quizify | Result</title>
+
+    <link rel="icon" href="{% static 'images/5692030.png' %}">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+
+body{
+
+    margin:0;
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    background:linear-gradient(-45deg,#0d6efd,#6610f2,#20c997,#0dcaf0);
+
+    background-size:400% 400%;
+
+    animation:bgMove 15s ease infinite;
+
+}
+
+@keyframes bgMove{
+
+0%{background-position:0% 50%;}
+
+50%{background-position:100% 50%;}
+
+100%{background-position:0% 50%;}
+
+}
+
+.background-animation{
+
+    position:fixed;
+
+    width:100%;
+
+    height:100%;
+
+    left:0;
+
+    top:0;
+
+    z-index:-1;
+
+    opacity:.15;
+
+    background-image:
+
+        radial-gradient(circle,#ffffff 2px,transparent 2px);
+
+    background-size:40px 40px;
+
+    animation:moveBackground 18s linear infinite;
+
+}
+
+@keyframes moveBackground{
+
+from{
+
+transform:translateY(0);
+
+}
+
+to{
+
+transform:translateY(-250px);
+
+}
+
+}
+
+.result-card{
+
+    max-width:1050px;
+
+    margin:auto;
+
+    padding:45px;
+
+    border-radius:30px;
+
+    background:rgba(255,255,255,.92);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 25px 60px rgba(0,0,0,.18);
+
+    animation:cardShow .8s ease;
+
+}
+
+@keyframes cardShow{
+
+from{
+
+opacity:0;
+
+transform:translateY(50px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:none;
+
+}
+
+}
+
+#performanceIcon{
+
+    width:120px;
+
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:linear-gradient(135deg,#FFD700,#ffae00);
+
+    color:white;
+
+    font-size:58px;
+
+    box-shadow:0 12px 35px rgba(255,193,7,.45);
+
+    animation:bounceIcon 2s infinite;
+
+}
+
+@keyframes bounceIcon{
+
+0%,100%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-12px);
+
+}
+
+}
+
+.result-title{
+
+    margin-top:25px;
+
+    font-size:46px;
+
+    font-weight:800;
+
+    color:#0d6efd;
+
+}
+
+.result-subtitle{
+
+    font-size:20px;
+
+    color:#6c757d;
+
+    margin-top:10px;
+
+}
+
+.score-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:40px;
+
+}
+
+.progress-circle{
+
+    position:relative;
+
+    width:220px;
+
+    height:220px;
+
+}
+
+.progress-circle svg{
+
+    width:220px;
+
+    height:220px;
+
+    transform:rotate(-90deg);
+
+}
+
+.progress-circle circle{
+
+    fill:none;
+
+    stroke-width:14;
+
+}
+
+.progress-circle .bg{
+
+    stroke:#dee2e6;
+
+}
+
+.progress-circle .progress{
+
+    stroke:#0d6efd;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:597;
+
+    stroke-dashoffset:597;
+
+    transition:stroke-dashoffset 2s ease;
+
+}
+
+.score-text{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    text-align:center;
+
+}
+
+.score-text h1{
+
+    margin:0;
+
+    font-size:64px;
+
+    color:#0d6efd;
+
+    font-weight:900;
+
+    animation:pulseScore 2s infinite;
+
+}
+
+.score-text span{
+
+    font-size:26px;
+
+    color:#6c757d;
+
+    font-weight:bold;
+
+}
+
+@keyframes pulseScore{
+
+0%{
+
+transform:scale(1);
+
+}
+
+50%{
+
+transform:scale(1.08);
+
+}
+
+100%{
+
+transform:scale(1);
+
+}
+
+}
+
+.performance-message{
+
+    margin-top:35px;
+
+    text-align:center;
+
+}
+
+.performance-message h2{
+
+    font-size:38px;
+
+    font-weight:800;
+
+    margin-bottom:12px;
+
+}
+
+.performance-message p{
+
+    font-size:21px;
+
+    color:#6c757d;
+
+}
+
+.stat-box{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:25px;
+
+    text-align:center;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-8px);
+
+}
+
+.stat-box i{
+
+    font-size:42px;
+
+    color:#0d6efd;
+
+}
+
+.stat-box h5{
+
+    margin-top:18px;
+
+    font-weight:bold;
+
+}
+
+.stat-box p{
+
+    margin-top:8px;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    color:#495057;
+
+}
+
+.button-area{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:25px;
+
+    flex-wrap:wrap;
+
+}
+
+.home-btn,
+
+.history-btn{
+
+    min-width:240px;
+
+    height:60px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.home-btn{
+
+    background:#0d6efd;
+
+    color:white;
+
+}
+
+.history-btn{
+
+    background:#198754;
+
+    color:white;
+
+}
+
+.home-btn:hover,
+
+.history-btn:hover{
+
+    color:white;
+
+    transform:translateY(-5px);
+
+    box-shadow:0 15px 35px rgba(0,0,0,.20);
+
+}
+
+@media(max-width:768px){
+
+.result-card{
+
+padding:25px;
+
+}
+
+.result-title{
+
+font-size:34px;
+
+}
+
+.progress-circle{
+
+width:180px;
+
+height:180px;
+
+}
+
+.progress-circle svg{
+
+width:180px;
+
+height:180px;
+
+}
+
+.score-text h1{
+
+font-size:48px;
+
+}
+
+.performance-message h2{
+
+font-size:28px;
+
+}
+
+.performance-message p{
+
+font-size:18px;
+
+}
+
+.home-btn,
+
+.history-btn{
+
+width:100%;
+
+}
+
+}
+/* ==========================================
+   CONFETTI ANIMATION
+========================================== */
+
+.confetti{
+
+    position:fixed;
+
+    top:-20px;
+
+    z-index:9999;
+
+    border-radius:3px;
+
+    opacity:.95;
+
+    animation:confettiFall 4s linear forwards;
+
+}
+
+@keyframes confettiFall{
+
+0%{
+
+transform:translateY(-20px) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(110vh) rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+
+/* ==========================================
+   GLOW EFFECTS
+========================================== */
+
+.progress-circle{
+
+    filter:drop-shadow(0 0 20px rgba(13,110,253,.35));
+
+}
+
+#performanceIcon{
+
+    animation:bounceIcon 2s infinite,
+              glowIcon 2s infinite alternate;
+
+}
+
+@keyframes glowIcon{
+
+from{
+
+box-shadow:0 0 15px rgba(255,193,7,.35);
+
+}
+
+to{
+
+box-shadow:0 0 45px rgba(255,193,7,.75);
+
+}
+
+}
+
+.score-text h1{
+
+    text-shadow:0 0 20px rgba(13,110,253,.35);
+
+}
+
+
+/* ==========================================
+   FLOATING STAT CARDS
+========================================== */
+
+.stat-box{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+.stat-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:linear-gradient(
+
+        90deg,
+
+        transparent,
+
+        rgba(255,255,255,.55),
+
+        transparent
+
+    );
+
+    transition:.8s;
+
+}
+
+.stat-box:hover::before{
+
+    left:120%;
+
+}
+
+.stat-box:hover{
+
+    transform:translateY(-10px) scale(1.03);
+
+}
+
+
+/* ==========================================
+   BUTTON RIPPLE
+========================================== */
+
+.home-btn,
+.history-btn{
+
+    min-width:240px;
+
+    height:60px;
+
+    border-radius:50px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;          /* Space between icon and text */
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.home-btn:hover::after,
+.history-btn:hover::after{
+
+    width:320px;
+
+    height:320px;
+
+}
+
+
+/* ==========================================
+   LOADING FADE
+========================================== */
+
+.score-wrapper,
+.performance-message{
+
+    transition:opacity .8s ease;
+
+}
+
+
+/* ==========================================
+   RESULT CARD FLOAT
+========================================== */
+
+.result-card{
+
+    animation:
+
+        cardShow .8s ease,
+
+        floatingCard 6s ease-in-out infinite;
+
+}
+
+@keyframes floatingCard{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-6px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+
+/* ==========================================
+   ICON ROTATION
+========================================== */
+
+#performanceIcon i{
+
+    transition:.6s;
+
+}
+
+#performanceIcon:hover i{
+
+    transform:rotate(15deg) scale(1.15);
+
+}
+
+
+/* ==========================================
+   PROGRESS BAR ANIMATION
+========================================== */
+
+.progress{
+
+    transition:stroke-dashoffset 2.2s ease;
+
+}
+
+
+/* ==========================================
+   PAGE FADE
+========================================== */
+
+body{
+
+    animation:pageFade .8s ease;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.result-card{
+
+padding:25px;
+
+}
+
+.score-wrapper{
+
+transform:scale(.82);
+
+}
+
+.result-title{
+
+font-size:32px;
+
+}
+
+.performance-message h2{
+
+font-size:26px;
+
+}
+
+.performance-message p{
+
+font-size:17px;
+
+}
+
+.button-area{
+
+flex-direction:column;
+
+}
+
+.home-btn,
+.history-btn{
+
+width:100%;
+
+}
+
+}
+  /* =====================================================
+   REVIEW ANSWERS SECTION
+===================================================== */
+
+.review-title{
+    margin-top:70px;
+    margin-bottom:35px;
+    text-align:center;
+    font-size:40px;
+    font-weight:800;
+    color:#0d6efd;
+}
+
+.review-subtitle{
+    text-align:center;
+    color:#6c757d;
+    margin-bottom:45px;
+    font-size:18px;
+}
+
+.answer-card{
+
+    background:#fff;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    margin-bottom:28px;
+
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    transition:.35s;
+
+    border-left:8px solid #0d6efd;
+
+}
+
+.answer-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+.answer-card.correct{
+
+    border-left:8px solid #198754;
+
+}
+
+.answer-card.wrong{
+
+    border-left:8px solid #dc3545;
+
+}
+
+.question-number{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:18px;
+
+}
+
+.question-number h4{
+
+    margin:0;
+
+    font-weight:800;
+
+    color:#0d6efd;
+
+}
+
+.status-badge{
+
+    padding:8px 16px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+}
+
+.status-correct{
+
+    background:#198754;
+
+}
+
+.status-wrong{
+
+    background:#dc3545;
+
+}
+
+.question-text{
+
+    font-size:20px;
+
+    font-weight:600;
+
+    color:#343a40;
+
+    margin-bottom:25px;
+
+    line-height:1.6;
+
+}
+
+.answer-box{
+
+    border-radius:15px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+}
+
+.user-answer{
+
+    background:#eef5ff;
+
+}
+
+.correct-answer{
+
+    background:#edf9f0;
+
+}
+
+.answer-box h6{
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+}
+
+.answer-box p{
+
+    margin:0;
+
+    font-size:18px;
+
+}
+
+.answer-icon{
+
+    margin-right:8px;
+
+}
+
+.correct-text{
+
+    color:#198754;
+
+    font-weight:bold;
+
+}
+
+.wrong-text{
+
+    color:#dc3545;
+
+    font-weight:bold;
+
+}
+
+.not-attempted{
+
+    color:#fd7e14;
+
+    font-weight:bold;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+.review-title{
+
+font-size:30px;
+
+}
+
+.question-number{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:12px;
+
+}
+
+.question-text{
+
+font-size:18px;
+
+}
+
+.answer-box p{
+
+font-size:16px;
+
+}
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="background-animation"></div>
+
+<div class="container py-5">
+
+    <div class="result-card">
+
+        <div class="text-center">
+
+            <div id="performanceIcon">
+
+                <i class="bi bi-trophy-fill"></i>
+
+            </div>
+
+            <h1 class="result-title">
+
+                Quiz Completed
+
+            </h1>
+
+            <p class="result-subtitle">
+
+                Here is your performance summary
+
+            </p>
+
+        </div>
+
+
+        <!-- SCORE CIRCLE -->
+
+        <div class="score-wrapper">
+
+            <div class="progress-circle">
+
+                <svg>
+
+                    <circle class="bg"
+
+                            cx="110"
+
+                            cy="110"
+
+                            r="95">
+
+                    </circle>
+
+                    <circle class="progress"
+
+                            cx="110"
+
+                            cy="110"
+
+                            r="95"
+
+                            id="progressCircle">
+
+                    </circle>
+
+                </svg>
+
+                <div class="score-text">
+
+                    <h1 id="animatedScore">
+
+                        0
+
+                    </h1>
+
+                    <span>
+
+                        /30
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="performance-message">
+
+            <h2 id="performanceTitle">
+
+                Loading...
+
+            </h2>
+
+            <p id="performanceText">
+
+                Calculating your result...
+
+            </p>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="row mt-5 g-4">
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-book-half"></i>
+
+                    <h5>
+
+                        Category
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.category }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+                    <h5>
+
+                        Correct Answers
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.correct_answers }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+                    <h5>
+
+                        Wrong Answers
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.wrong_answers }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-percent"></i>
+
+                    <h5>
+
+                        Percentage
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.percentage }}%
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-calendar-event-fill"></i>
+
+                    <h5>
+
+                        Attempt Date
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.completed_at }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="stat-box">
+
+                    <i class="bi bi-award-fill"></i>
+
+                    <h5>
+
+                        Total Marks
+
+                    </h5>
+
+                    <p>
+
+                        {{ attempt.score }} / {{ attempt.total_marks }}
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+<!-- ==========================================================
+     REVIEW ANSWERS
+=========================================================== -->
+
+<hr class="my-5">
+
+<div class="review-section">
+
+    <h2 class="review-title">
+        <i class="bi bi-journal-check me-2"></i>
+        Review Your Answers
+    </h2>
+
+    <p class="review-subtitle">
+        Compare your answers with the correct answers below.
+    </p>
+
+    {% for answer in answers %}
+
+    <div class="answer-card {% if answer.is_correct %}correct{% else %}wrong{% endif %}">
+
+        <div class="question-number">
+
+            <h4>
+                Question {{ forloop.counter }}
+            </h4>
+
+            {% if answer.is_correct %}
+
+            <span class="status-badge status-correct">
+                <i class="bi bi-check-circle-fill"></i>
+                Correct
+            </span>
+
+            {% else %}
+
+            <span class="status-badge status-wrong">
+                <i class="bi bi-x-circle-fill"></i>
+                Wrong
+            </span>
+
+            {% endif %}
+
+        </div>
+
+        <div class="question-text">
+
+            {{ answer.question }}
+
+        </div>
+
+        <div class="answer-box user-answer">
+
+            <h3>
+
+                <i class="bi bi-person-fill answer-icon"></i>
+
+                Your Answer
+
+            </h3>
+
+            <p>
+
+                {% if answer.selected_answer %}
+
+                    {% if answer.is_correct %}
+
+                        <span class="correct-text">
+
+                            {{ answer.get_selected_text }}
+
+                        </span>
+
+                    {% else %}
+
+                        <span class="wrong-text">
+
+                            {{ answer.get_selected_text }}
+
+                        </span>
+
+                    {% endif %}
+
+                {% else %}
+
+                    <span class="not-attempted">
+
+                        Not Attempted
+
+                    </span>
+
+                {% endif %}
+
+            </p>
+
+        </div>
+
+        <div class="answer-box correct-answer">
+
+            <h3>
+
+                <i class="bi bi-lightbulb-fill answer-icon"></i>
+
+                Correct Answer
+
+            </h3>
+
+            <p class="correct-text">
+
+                {{ answer.get_correct_text }}
+
+            </p>
+
+        </div>
+
+    </div>
+
+    {% empty %}
+
+    <div class="alert alert-warning text-center">
+
+        No answer history available.
+
+    </div>
+
+    {% endfor %}
+<div class="button-area mt-5 pt-3">
+
+    <a href="{% url 'category' %}" class="home-btn">
+    <i class="bi bi-grid-fill"></i>
+    Back to Categories
+</a>
+
+<a href="{% url 'profile' %}" class="history-btn">
+    <i class="bi bi-clock-history"></i>
+    View History
+</a>
+
+</div>
+</div>
+    </div>
+
+</div>
+
+<script>
+
+// ===============================
+// QUIZ RESULT ANIMATIONS
+// ===============================
+
+// Django values
+const finalScore = Number("{{ attempt.score }}");
+const totalMarks = Number("{{ attempt.total_marks }}");
+const percentage = Number("{{ attempt.percentage }}");
+
+// Elements
+const scoreElement = document.getElementById("animatedScore");
+const progressCircle = document.getElementById("progressCircle");
+const performanceTitle = document.getElementById("performanceTitle");
+const performanceText = document.getElementById("performanceText");
+const performanceIcon = document.getElementById("performanceIcon");
+
+
+// Hide everything first
+
+document.querySelector(".score-wrapper").style.opacity = "0";
+document.querySelector(".performance-message").style.opacity = "0";
+
+
+// Loading animation
+
+performanceTitle.innerHTML = "Calculating...";
+performanceText.innerHTML = "Please wait while we evaluate your performance.";
+
+setTimeout(function(){
+
+    document.querySelector(".score-wrapper").style.opacity = "1";
+    document.querySelector(".performance-message").style.opacity = "1";
+
+    startCounter();
+
+},1800);
+
+
+// ===============================
+// SCORE COUNTER
+// ===============================
+
+function startCounter(){
+
+    let score = 0;
+
+    const speed = 60;
+
+    const counter = setInterval(function(){
+
+        score++;
+
+        scoreElement.innerHTML = score;
+
+        if(score >= finalScore){
+
+            clearInterval(counter);
+
+            animateCircle();
+
+            setPerformance();
+
+        }
+
+    },speed);
+
+}
+
+
+
+// ===============================
+// CIRCLE PROGRESS
+// ===============================
+
+function animateCircle(){
+
+    const radius = 95;
+
+    const circumference = 2 * Math.PI * radius;
+
+    const offset =
+        circumference -
+        (finalScore/totalMarks) * circumference;
+
+    progressCircle.style.strokeDashoffset = offset;
+
+}
+
+
+
+// ===============================
+// PERFORMANCE LEVELS
+// ===============================
+
+function setPerformance(){
+
+    // EXCELLENT
+
+    if(finalScore >=25){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-trophy-fill"></i>';
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#FFD700,#ff9800)";
+
+        progressCircle.style.stroke =
+        "#ffc107";
+
+        scoreElement.style.color =
+        "#ffc107";
+
+        performanceTitle.innerHTML =
+        "🏆 Outstanding!";
+
+        performanceText.innerHTML =
+        "Excellent performance! You have mastered this category.";
+
+        createConfetti();
+
+    }
+
+    // VERY GOOD
+
+    else if(finalScore >=20){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-award-fill"></i>';
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#0d6efd,#4dabf7)";
+
+        progressCircle.style.stroke =
+        "#0d6efd";
+
+        scoreElement.style.color =
+        "#0d6efd";
+
+        performanceTitle.innerHTML =
+        "🌟 Very Good!";
+
+        performanceText.innerHTML =
+        "Great work! A little more practice and you'll reach perfection.";
+
+    }
+
+    // GOOD
+
+    else if(finalScore >=15){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-hand-thumbs-up-fill"></i>';
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#fd7e14,#ffc107)";
+
+        progressCircle.style.stroke =
+        "#fd7e14";
+
+        scoreElement.style.color =
+        "#fd7e14";
+
+        performanceTitle.innerHTML =
+        "👍 Good Job!";
+
+        performanceText.innerHTML =
+        "You performed well. Keep practicing to improve further.";
+
+    }
+
+    // NEEDS IMPROVEMENT
+
+    else{
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-book-fill"></i>';
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#dc3545,#ff6b6b)";
+
+        progressCircle.style.stroke =
+        "#dc3545";
+
+        scoreElement.style.color =
+        "#dc3545";
+
+        performanceTitle.innerHTML =
+        "📚 Keep Practicing!";
+
+        performanceText.innerHTML =
+        "Don't worry. Review the topics and you'll do much better next time.";
+
+    }
+
+}
+
+
+
+// ===============================
+// CONFETTI
+// ===============================
+
+function createConfetti(){
+
+    for(let i=0;i<150;i++){
+
+        let confetti=document.createElement("div");
+
+        confetti.className="confetti";
+
+        confetti.style.left=Math.random()*100+"vw";
+
+        confetti.style.animationDelay=Math.random()*2+"s";
+
+        confetti.style.background=
+        randomColor();
+
+        confetti.style.width=
+        (6+Math.random()*8)+"px";
+
+        confetti.style.height=
+        (6+Math.random()*8)+"px";
+
+        document.body.appendChild(confetti);
+
+    }
+
+}
+
+
+
+// ===============================
+// RANDOM COLORS
+// ===============================
+
+function randomColor(){
+
+    const colors=[
+
+        "#ffc107",
+        "#ff5722",
+        "#198754",
+        "#0d6efd",
+        "#dc3545",
+        "#6610f2",
+        "#20c997"
+
+    ];
+
+    return colors[Math.floor(Math.random()*colors.length)];
+
+}
+
+
+
+// ===============================
+// FADE IN STATS
+// ===============================
+
+window.addEventListener("load",function(){
+
+    const cards=document.querySelectorAll(".stat-box");
+
+    cards.forEach(function(card,index){
+
+        card.style.opacity="0";
+
+        card.style.transform="translateY(40px)";
+
+        setTimeout(function(){
+
+            card.style.transition=".6s";
+
+            card.style.opacity="1";
+
+            card.style.transform="translateY(0px)";
+
+        },2500+(index*150));
+
+    });
+
+});
+
+
+
+// ===============================
+// BUTTON ANIMATION
+// ===============================
+
+const buttons=document.querySelectorAll(".home-btn,.history-btn");
+
+buttons.forEach(function(button){
+
+    button.addEventListener("mouseenter",function(){
+
+        button.style.transform="scale(1.05)";
+
+    });
+
+    button.addEventListener("mouseleave",function(){
+
+        button.style.transform="scale(1)";
+
+    });
+
+});
+  // =======================================
+// REVIEW ANSWER CARD ANIMATION
+// =======================================
+
+window.addEventListener("load", function () {
+
+    const reviewCards = document.querySelectorAll(".answer-card");
+
+    reviewCards.forEach(function(card, index){
+
+        card.style.opacity = "0";
+        card.style.transform = "translateY(50px)";
+
+        setTimeout(function(){
+
+            card.style.transition = ".6s ease";
+
+            card.style.opacity = "1";
+
+            card.style.transform = "translateY(0)";
+
+        }, 3500 + (index * 120));
+
+    });
+
+});
+
+
+// =======================================
+// SMOOTH SCROLL TO REVIEW SECTION
+// =======================================
+
+const reviewSection = document.querySelector(".review-section");
+
+if(reviewSection){
+
+    setTimeout(function(){
+
+        reviewSection.style.scrollMarginTop = "30px";
+
+    },100);
+
+}
+
+
+// =======================================
+// HOVER EFFECT FOR ANSWER CARDS
+// =======================================
+
+document.querySelectorAll(".answer-card").forEach(function(card){
+
+    card.addEventListener("mouseenter", function(){
+
+        card.style.boxShadow =
+            "0 18px 40px rgba(13,110,253,.18)";
+
+    });
+
+    card.addEventListener("mouseleave", function(){
+
+        card.style.boxShadow =
+            "0 10px 30px rgba(0,0,0,.08)";
+
+    });
+
+});
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+
+<title>Registered</title>
+     <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Segoe UI',sans-serif;
+        }
+
+        body{
+
+            background:
+                linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.60)),
+                url("{% static 'images/ChatGPT Image Jul 24, 2026, 04_23_12 PM.png' %}");
+
+            background-size:cover;
+            background-position:center;
+            background-repeat:no-repeat;
+            background-attachment:fixed;
+
+            min-height:100vh;
+
+            display:flex;
+            justify-content:center;
+            align-items:center;
+
+        }
+ </style>
+
+<script>
+
+alert("Registered Successfully!");
+
+window.location.href="{% url 'login' %}";
+
+</script>
+
+</head>
+
+<body>
+
+
+</body>
+
+</html>

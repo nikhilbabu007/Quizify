@@ -1,0 +1,4090 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Quizify | Result</title>
+
+    <link rel="icon"
+          href="{% static 'images/5692030.png' %}">
+
+    <link rel="stylesheet"
+          href="{% static 'css/bootstrap.min.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+<style>
+
+/* =========================================================
+   GLOBAL
+========================================================= */
+
+*{
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+
+    margin:0;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    min-height:100vh;
+
+    overflow-x:hidden;
+
+    background:#f3f7ff;
+
+    color:#14204a;
+
+    animation:pageFade .8s ease;
+
+}
+
+
+/* =========================================================
+   EXISTING PAGE FADE
+========================================================= */
+
+@keyframes pageFade{
+
+    from{
+        opacity:0;
+    }
+
+    to{
+        opacity:1;
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND ANIMATION
+========================================================= */
+
+.background-animation{
+
+    position:fixed;
+
+    width:100%;
+
+    height:100%;
+
+    left:0;
+
+    top:0;
+
+    z-index:-1;
+
+    opacity:.12;
+
+    background-image:
+        radial-gradient(
+            circle,
+            #ffffff 2px,
+            transparent 2px
+        );
+
+    background-size:40px 40px;
+
+    animation:
+        moveBackground 18s linear infinite;
+
+}
+
+
+@keyframes moveBackground{
+
+    from{
+        transform:translateY(0);
+    }
+
+    to{
+        transform:translateY(-250px);
+    }
+
+}
+
+
+/* =========================================================
+   TOP NAVBAR
+========================================================= */
+
+.top-navbar{
+
+    height:82px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #020d2d,
+            #07184a,
+            #101f65
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 55px;
+
+    color:white;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.12);
+
+    position:relative;
+
+    z-index:20;
+
+}
+
+
+.nav-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    text-decoration:none;
+
+    color:white;
+
+}
+
+
+.nav-logo{
+
+    width:39px;
+
+    height:39px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5d55ff,
+            #8d6bff
+        );
+
+    font-size:23px;
+
+    transform:skew(-10deg);
+
+}
+
+
+.nav-brand span{
+
+    font-size:26px;
+
+    font-weight:800;
+
+    letter-spacing:-.5px;
+
+}
+
+
+.nav-links{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:45px;
+
+}
+
+
+.nav-links a{
+
+    color:
+        rgba(255,255,255,.88);
+
+    text-decoration:none;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+
+.nav-links a:hover{
+
+    color:#ffffff;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+.nav-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+
+.nav-btn{
+
+    min-height:43px;
+
+    padding:
+        0 20px;
+
+    border-radius:11px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    text-decoration:none;
+
+    font-size:14px;
+
+    font-weight:700;
+
+    transition:.3s;
+
+}
+
+
+.nav-category{
+
+    color:white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.25);
+
+    background:
+        rgba(255,255,255,.08);
+
+}
+
+
+.nav-history{
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #315eea,
+            #4564ed
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(50,90,230,.25);
+
+}
+
+
+.nav-btn:hover{
+
+    color:white;
+
+    transform:
+        translateY(-2px);
+
+}
+
+
+/* =========================================================
+   HERO SECTION
+========================================================= */
+
+.hero-section{
+
+    position:relative;
+
+    min-height:445px;
+
+    overflow:hidden;
+
+    background:
+        radial-gradient(
+            circle at 78% 50%,
+            rgba(61,95,255,.50),
+            transparent 31%
+        ),
+
+        linear-gradient(
+            115deg,
+            #06133d 0%,
+            #071c57 48%,
+            #111e70 100%
+        );
+
+    color:white;
+
+}
+
+
+.hero-section::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:600px;
+
+    height:600px;
+
+    right:-180px;
+
+    top:-260px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(71,92,255,.30),
+            transparent 68%
+        );
+
+}
+
+
+.hero-section::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:100%;
+
+    height:120px;
+
+    bottom:-70px;
+
+    left:0;
+
+    background:#f3f7ff;
+
+    border-radius:
+        50% 50% 0 0 /
+        100% 100% 0 0;
+
+}
+
+
+.hero-inner{
+
+    max-width:1180px;
+
+    margin:auto;
+
+    min-height:445px;
+
+    padding:
+        65px 30px
+        75px;
+
+    display:grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    align-items:center;
+
+    gap:50px;
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.hero-content{
+
+    padding-left:15px;
+
+}
+
+
+.hero-small-title{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:
+        rgba(255,255,255,.82);
+
+    margin-bottom:13px;
+
+}
+
+
+.hero-small-title span{
+
+    font-size:28px;
+
+}
+
+
+.hero-title{
+
+    font-size:47px;
+
+    line-height:1.12;
+
+    font-weight:900;
+
+    margin:0 0 20px;
+
+    color:white;
+
+}
+
+
+.hero-text{
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    color:
+        rgba(255,255,255,.78);
+
+    max-width:540px;
+
+    margin-bottom:27px;
+
+}
+
+
+.hero-buttons{
+
+    display:flex;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+}
+
+
+/* Existing button animation classes */
+
+.home-btn,
+.history-btn{
+
+    min-width:205px;
+
+    height:56px;
+
+    border-radius:14px;
+
+    text-decoration:none;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:10px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.home-btn{
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b54f6,
+            #4269ef
+        );
+
+    color:white;
+
+    box-shadow:
+        0 10px 25px
+        rgba(58,76,240,.35);
+
+}
+
+
+.history-btn{
+
+    background:
+        transparent;
+
+    color:white;
+
+    border:
+        1px solid
+        rgba(255,255,255,.7);
+
+}
+
+
+.home-btn:hover,
+.history-btn:hover{
+
+    color:white;
+
+    transform:
+        translateY(-5px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(0,0,0,.20);
+
+}
+
+
+/* =========================================================
+   TROPHY
+========================================================= */
+
+.hero-trophy-area{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    position:relative;
+
+}
+
+
+.trophy-glow{
+
+    width:350px;
+
+    height:350px;
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(74,105,255,.45),
+            transparent 68%
+        );
+
+    position:absolute;
+
+    filter:blur(5px);
+
+}
+
+
+.trophy-card{
+
+    width:300px;
+
+    height:310px;
+
+    position:relative;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    justify-content:center;
+
+    animation:
+        trophyFloat 4s ease-in-out infinite;
+
+}
+
+
+@keyframes trophyFloat{
+
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+}
+
+
+.trophy-shield{
+
+    width:235px;
+
+    height:250px;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            90% 18%,
+            84% 70%,
+            50% 100%,
+            16% 70%,
+            10% 18%
+        );
+
+    background:
+        linear-gradient(
+            145deg,
+            #4e66e9,
+            #111c6a
+        );
+
+    border:
+        5px solid
+        rgba(130,155,255,.8);
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    box-shadow:
+        0 0 50px
+        rgba(75,95,255,.55);
+
+    position:relative;
+
+}
+
+
+.trophy-shield::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:18px;
+
+    clip-path:
+        polygon(
+            50% 0%,
+            90% 18%,
+            84% 70%,
+            50% 100%,
+            16% 70%,
+            10% 18%
+        );
+
+    border:
+        2px solid
+        rgba(170,185,255,.35);
+
+}
+
+
+.trophy-symbol{
+
+    font-size:105px;
+
+    color:#ffc21c;
+
+    filter:
+        drop-shadow(
+            0 8px 10px
+            rgba(0,0,0,.35)
+        );
+
+    z-index:2;
+
+}
+
+
+.trophy-ribbon{
+
+    position:absolute;
+
+    bottom:23px;
+
+    width:275px;
+
+    height:55px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5166ef,
+            #6a50e9
+        );
+
+    border-radius:8px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    color:white;
+
+    font-size:25px;
+
+    font-weight:900;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.25);
+
+}
+
+
+.trophy-stars{
+
+    position:absolute;
+
+    bottom:-10px;
+
+    color:#ffc21c;
+
+    font-size:23px;
+
+    letter-spacing:10px;
+
+}
+
+
+/* =========================================================
+   MAIN CONTENT
+========================================================= */
+
+.main-container{
+
+    max-width:1180px;
+
+    margin:
+        -5px auto 0;
+
+    padding:
+        0 25px 60px;
+
+    position:relative;
+
+    z-index:5;
+
+}
+
+
+/* =========================================================
+   SUMMARY CARD
+========================================================= */
+
+.summary-card{
+
+    background:
+        rgba(255,255,255,.98);
+
+    border-radius:18px;
+
+    padding:38px;
+
+    box-shadow:
+        0 18px 45px
+        rgba(30,54,100,.10);
+
+    display:grid;
+
+    grid-template-columns:
+        270px 1fr;
+
+    gap:38px;
+
+    align-items:center;
+
+}
+
+
+/* =========================================================
+   SCORE CIRCLE
+========================================================= */
+
+.score-wrapper{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    margin:0;
+
+}
+
+
+.progress-circle{
+
+    position:relative;
+
+    width:220px;
+
+    height:220px;
+
+    filter:
+        drop-shadow(
+            0 0 20px
+            rgba(13,110,253,.25)
+        );
+
+}
+
+
+.progress-circle svg{
+
+    width:220px;
+
+    height:220px;
+
+    transform:rotate(-90deg);
+
+}
+
+
+.progress-circle circle{
+
+    fill:none;
+
+    stroke-width:14;
+
+}
+
+
+.progress-circle .bg{
+
+    stroke:#e9eef7;
+
+}
+
+
+.progress-circle .progress{
+
+    stroke:#0d6efd;
+
+    stroke-linecap:round;
+
+    stroke-dasharray:597;
+
+    stroke-dashoffset:597;
+
+    transition:
+        stroke-dashoffset 2s ease;
+
+}
+
+
+.score-text{
+
+    position:absolute;
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    text-align:center;
+
+}
+
+
+.score-text h1{
+
+    margin:0;
+
+    font-size:57px;
+
+    color:#0d6efd;
+
+    font-weight:900;
+
+    animation:
+        pulseScore 2s infinite;
+
+}
+
+
+.score-text span{
+
+    display:block;
+
+    font-size:17px;
+
+    color:#66728f;
+
+    font-weight:600;
+
+}
+
+
+@keyframes pulseScore{
+
+    0%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.08);
+    }
+
+    100%{
+        transform:scale(1);
+    }
+
+}
+
+
+/* =========================================================
+   SCORE DETAILS
+========================================================= */
+
+.score-details{
+
+    border-left:
+        1px solid
+        #e4e9f2;
+
+    padding-left:35px;
+
+}
+
+
+.total-score{
+
+    font-size:49px;
+
+    font-weight:900;
+
+    color:#111a39;
+
+    margin-bottom:3px;
+
+}
+
+
+.total-score span{
+
+    color:#1caf75;
+
+}
+
+
+.total-score-label{
+
+    color:#63708e;
+
+    font-size:15px;
+
+    margin-bottom:25px;
+
+}
+
+
+.stats-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:13px;
+
+}
+
+
+.stat-box{
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f9fd
+        );
+
+    border:
+        1px solid
+        #e5eaf3;
+
+    border-radius:15px;
+
+    padding:18px 13px;
+
+    text-align:center;
+
+    transition:.3s;
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+
+.stat-box:hover{
+
+    transform:
+        translateY(-10px)
+        scale(1.03);
+
+}
+
+
+.stat-box i{
+
+    font-size:24px;
+
+    color:#315ce3;
+
+}
+
+
+.stat-box h5{
+
+    margin-top:10px;
+
+    margin-bottom:5px;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    color:#5e6880;
+
+}
+
+
+.stat-box p{
+
+    margin:0;
+
+    font-size:22px;
+
+    font-weight:900;
+
+    color:#17203c;
+
+}
+
+
+/* =========================================================
+   EXISTING STAT SHINE ANIMATION
+========================================================= */
+
+.stat-box::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:-100%;
+
+    top:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.65),
+            transparent
+        );
+
+    transition:.8s;
+
+}
+
+
+.stat-box:hover::before{
+
+    left:120%;
+
+}
+
+
+/* =========================================================
+   PERFORMANCE SUMMARY
+========================================================= */
+
+.section-card{
+
+    background:
+        rgba(255,255,255,.98);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-top:22px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(30,54,100,.08);
+
+}
+
+
+.section-heading{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:11px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+    color:#0c1c65;
+
+    margin-bottom:22px;
+
+}
+
+
+.section-heading i{
+
+    color:#315de4;
+
+    font-size:24px;
+
+}
+
+
+.performance-message{
+
+    text-align:left;
+
+    margin:0 0 25px;
+
+    opacity:1;
+
+}
+
+
+.performance-message h2{
+
+    font-size:29px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.performance-message p{
+
+    font-size:16px;
+
+    color:#68738d;
+
+    margin:0;
+
+}
+
+
+.performance-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:16px;
+
+}
+
+
+.performance-card{
+
+    border:
+        1px solid
+        #e3e8f1;
+
+    border-radius:15px;
+
+    padding:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8faff
+        );
+
+}
+
+
+.performance-card h4{
+
+    font-size:18px;
+
+    margin-bottom:12px;
+
+    font-weight:800;
+
+}
+
+
+.performance-card p{
+
+    margin:0;
+
+    color:#56617a;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+}
+
+
+.performance-line{
+
+    width:100%;
+
+    height:7px;
+
+    border-radius:10px;
+
+    background:#e9edf3;
+
+    margin-top:16px;
+
+    overflow:hidden;
+
+}
+
+
+.performance-line span{
+
+    display:block;
+
+    width:0%;
+
+    height:100%;
+
+    border-radius:10px;
+
+    transition:
+        width 1.5s ease;
+
+}
+
+
+.performance-card.excellent h4{
+
+    color:#16a66e;
+
+}
+
+
+.performance-card.excellent
+.performance-line span{
+
+    width:100%;
+
+    background:#19af73;
+
+}
+
+
+.performance-card.average h4{
+
+    color:#f08a12;
+
+}
+
+
+.performance-card.average
+.performance-line span{
+
+    width:70%;
+
+    background:#ff9c19;
+
+}
+
+
+.performance-card.improve h4{
+
+    color:#dc3f4a;
+
+}
+
+
+.performance-card.improve
+.performance-line span{
+
+    width:40%;
+
+    background:#ed4a4a;
+
+}
+
+
+/* =========================================================
+   CATEGORY CARD
+========================================================= */
+
+.category-card{
+
+    display:grid;
+
+    grid-template-columns:
+        120px 1fr 300px;
+
+    gap:25px;
+
+    align-items:center;
+
+}
+
+
+.category-icon{
+
+    width:120px;
+
+    height:120px;
+
+    border-radius:18px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dce8ff,
+            #cbdcff
+        );
+
+    color:#3e70e9;
+
+    font-size:52px;
+
+}
+
+
+.category-info h2{
+
+    margin:0 0 8px;
+
+    color:#101a46;
+
+    font-size:24px;
+
+    font-weight:850;
+
+}
+
+
+.category-info p{
+
+    margin:0 0 12px;
+
+    color:#66718a;
+
+    font-size:15px;
+
+    line-height:1.5;
+
+}
+
+
+.question-badge{
+
+    display:inline-flex;
+
+    padding:
+        7px 13px;
+
+    border-radius:9px;
+
+    background:#eaf1ff;
+
+    color:#2556d7;
+
+    font-size:13px;
+
+    font-weight:700;
+
+}
+
+
+.category-meta{
+
+    border-left:
+        1px solid
+        #e5e9f1;
+
+    padding-left:25px;
+
+}
+
+
+.meta-row{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:14px;
+
+    color:#475473;
+
+    font-size:14px;
+
+}
+
+
+.meta-row i{
+
+    color:#5b74b8;
+
+    font-size:19px;
+
+}
+
+
+.level-badge{
+
+    background:#dff7ec;
+
+    color:#168a5d;
+
+    padding:
+        6px 12px;
+
+    border-radius:8px;
+
+    font-weight:700;
+
+    font-size:13px;
+
+}
+
+
+/* =========================================================
+   MOTIVATION BANNER
+========================================================= */
+
+.motivation-banner{
+
+    margin-top:22px;
+
+    min-height:105px;
+
+    border-radius:16px;
+
+    padding:
+        20px 30px;
+
+    background:
+        linear-gradient(
+            110deg,
+            #edf4ff,
+            #e8f0ff,
+            #dce8ff
+        );
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+    overflow:hidden;
+
+    position:relative;
+
+}
+
+
+.motivation-icon{
+
+    width:58px;
+
+    height:58px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:#8badff;
+
+    color:white;
+
+    font-size:27px;
+
+    flex-shrink:0;
+
+}
+
+
+.motivation-content{
+
+    position:relative;
+
+    z-index:2;
+
+}
+
+
+.motivation-content h3{
+
+    margin:0 0 6px;
+
+    color:#11236f;
+
+    font-size:17px;
+
+    font-weight:800;
+
+}
+
+
+.motivation-content p{
+
+    margin:0;
+
+    color:#63708b;
+
+    font-size:14px;
+
+}
+
+
+.rocket{
+
+    position:absolute;
+
+    right:45px;
+
+    font-size:62px;
+
+    transform:
+        rotate(-25deg);
+
+    color:#4267e8;
+
+    opacity:.9;
+
+}
+
+
+/* =========================================================
+   REVIEW SECTION
+========================================================= */
+
+.review-title{
+
+    margin-top:0;
+
+    margin-bottom:10px;
+
+    text-align:center;
+
+    font-size:32px;
+
+    font-weight:800;
+
+    color:#0c2475;
+
+}
+
+
+.review-subtitle{
+
+    text-align:center;
+
+    color:#6c757d;
+
+    margin-bottom:35px;
+
+    font-size:16px;
+
+}
+
+
+/* =========================================================
+   ANSWER CARD
+========================================================= */
+
+.answer-card{
+
+    background:#fff;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:22px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.07);
+
+    transition:.35s;
+
+    border-left:
+        7px solid
+        #0d6efd;
+
+}
+
+
+.answer-card:hover{
+
+    transform:
+        translateY(-6px);
+
+}
+
+
+.answer-card.correct{
+
+    border-left:
+        7px solid
+        #198754;
+
+}
+
+
+.answer-card.wrong{
+
+    border-left:
+        7px solid
+        #dc3545;
+
+}
+
+
+.question-number{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:17px;
+
+}
+
+
+.question-number h4{
+
+    margin:0;
+
+    font-weight:800;
+
+    color:#0d6efd;
+
+}
+
+
+.status-badge{
+
+    padding:
+        7px 14px;
+
+    border-radius:30px;
+
+    color:white;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+}
+
+
+.status-correct{
+
+    background:#198754;
+
+}
+
+
+.status-wrong{
+
+    background:#dc3545;
+
+}
+
+
+.question-text{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    color:#343a40;
+
+    margin-bottom:20px;
+
+    line-height:1.6;
+
+}
+
+
+.answer-box{
+
+    border-radius:14px;
+
+    padding:16px;
+
+    margin-bottom:14px;
+
+}
+
+
+.user-answer{
+
+    background:#eef5ff;
+
+}
+
+
+.correct-answer{
+
+    background:#edf9f0;
+
+}
+
+
+.answer-box h3{
+
+    font-size:15px;
+
+    font-weight:800;
+
+    margin-bottom:8px;
+
+}
+
+
+.answer-box p{
+
+    margin:0;
+
+    font-size:16px;
+
+}
+
+
+.answer-icon{
+
+    margin-right:7px;
+
+}
+
+
+.correct-text{
+
+    color:#198754;
+
+    font-weight:bold;
+
+}
+
+
+.wrong-text{
+
+    color:#dc3545;
+
+    font-weight:bold;
+
+}
+
+
+.not-attempted{
+
+    color:#fd7e14;
+
+    font-weight:bold;
+
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.footer{
+
+    background:
+        linear-gradient(
+            110deg,
+            #020c2b,
+            #071a49
+        );
+
+    min-height:85px;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 55px;
+
+}
+
+
+.footer-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    font-size:22px;
+
+    font-weight:800;
+
+}
+
+
+.footer-brand i{
+
+    color:#7165ff;
+
+}
+
+
+.footer-copy{
+
+    color:
+        rgba(255,255,255,.72);
+
+    font-size:13px;
+
+}
+
+
+.footer-social{
+
+    display:flex;
+
+    gap:20px;
+
+}
+
+
+.footer-social i{
+
+    color:
+        rgba(255,255,255,.7);
+
+    font-size:18px;
+
+}
+
+
+/* =========================================================
+   CONFETTI - EXISTING
+========================================================= */
+
+.confetti{
+
+    position:fixed;
+
+    top:-20px;
+
+    z-index:9999;
+
+    border-radius:3px;
+
+    opacity:.95;
+
+    animation:
+        confettiFall 4s linear forwards;
+
+}
+
+
+@keyframes confettiFall{
+
+    0%{
+
+        transform:
+            translateY(-20px)
+            rotate(0deg);
+
+        opacity:1;
+
+    }
+
+
+    100%{
+
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================================================
+   PERFORMANCE ICON - EXISTING ANIMATION
+========================================================= */
+
+#performanceIcon{
+
+    width:100px;
+
+    height:100px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #FFD700,
+            #ffae00
+        );
+
+    color:white;
+
+    font-size:48px;
+
+    box-shadow:
+        0 12px 35px
+        rgba(255,193,7,.45);
+
+    animation:
+        bounceIcon 2s infinite,
+        glowIcon 2s infinite alternate;
+
+}
+
+
+@keyframes bounceIcon{
+
+    0%,
+    100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-12px);
+    }
+
+}
+
+
+@keyframes glowIcon{
+
+    from{
+
+        box-shadow:
+            0 0 15px
+            rgba(255,193,7,.35);
+
+    }
+
+
+    to{
+
+        box-shadow:
+            0 0 45px
+            rgba(255,193,7,.75);
+
+    }
+
+}
+
+
+#performanceIcon i{
+
+    transition:.6s;
+
+}
+
+
+#performanceIcon:hover i{
+
+    transform:
+        rotate(15deg)
+        scale(1.15);
+
+}
+
+
+/* =========================================================
+   BUTTON RIPPLE SUPPORT
+========================================================= */
+
+.home-btn::after,
+.history-btn::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:0;
+
+    height:0;
+
+    border-radius:50%;
+
+    background:
+        rgba(255,255,255,.15);
+
+    left:50%;
+
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    transition:.5s;
+
+}
+
+
+.home-btn:hover::after,
+.history-btn:hover::after{
+
+    width:320px;
+
+    height:320px;
+
+}
+
+
+/* =========================================================
+   LOADING FADE - EXISTING
+========================================================= */
+
+.score-wrapper,
+.performance-message{
+
+    transition:
+        opacity .8s ease;
+
+}
+
+
+/* =========================================================
+   RESULT CARD FLOAT - EXISTING
+========================================================= */
+
+.result-card{
+
+    animation:
+        cardShow .8s ease,
+        floatingCard 6s ease-in-out infinite;
+
+}
+
+
+@keyframes floatingCard{
+
+    0%{
+
+        transform:
+            translateY(0);
+
+    }
+
+
+    50%{
+
+        transform:
+            translateY(-6px);
+
+    }
+
+
+    100%{
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:1000px){
+
+    .nav-links{
+
+        gap:20px;
+
+    }
+
+
+    .hero-inner{
+
+        grid-template-columns:
+            1fr;
+
+        text-align:center;
+
+    }
+
+
+    .hero-content{
+
+        padding:0;
+
+    }
+
+
+    .hero-text{
+
+        margin-left:auto;
+
+        margin-right:auto;
+
+    }
+
+
+    .hero-buttons{
+
+        justify-content:center;
+
+    }
+
+
+    .summary-card{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .score-details{
+
+        border-left:none;
+
+        border-top:
+            1px solid
+            #e4e9f2;
+
+        padding-left:0;
+
+        padding-top:30px;
+
+    }
+
+
+    .category-card{
+
+        grid-template-columns:
+            100px 1fr;
+
+    }
+
+
+    .category-meta{
+
+        grid-column:
+            1 / -1;
+
+        border-left:none;
+
+        border-top:
+            1px solid
+            #e5e9f1;
+
+        padding:
+            20px 0 0;
+
+    }
+
+}
+
+
+@media(max-width:768px){
+
+    .top-navbar{
+
+        height:auto;
+
+        padding:
+            18px 20px;
+
+        flex-wrap:wrap;
+
+        gap:15px;
+
+    }
+
+
+    .nav-links{
+
+        display:none;
+
+    }
+
+
+    .nav-actions{
+
+        margin-left:auto;
+
+    }
+
+
+    .nav-category{
+
+        display:none;
+
+    }
+
+
+    .hero-section{
+
+        min-height:700px;
+
+    }
+
+
+    .hero-inner{
+
+        min-height:650px;
+
+        padding:
+            55px 20px 90px;
+
+    }
+
+
+    .hero-title{
+
+        font-size:36px;
+
+    }
+
+
+    .hero-small-title{
+
+        font-size:20px;
+
+    }
+
+
+    .hero-text{
+
+        font-size:15px;
+
+    }
+
+
+    .trophy-card{
+
+        transform:
+            scale(.85);
+
+    }
+
+
+    .summary-card{
+
+        padding:25px 18px;
+
+    }
+
+
+    .total-score{
+
+        font-size:40px;
+
+    }
+
+
+    .stats-grid{
+
+        grid-template-columns:
+            repeat(2,1fr);
+
+    }
+
+
+    .performance-grid{
+
+        grid-template-columns:
+            1fr;
+
+    }
+
+
+    .section-card{
+
+        padding:22px 18px;
+
+    }
+
+
+    .category-card{
+
+        grid-template-columns:
+            1fr;
+
+        text-align:center;
+
+    }
+
+
+    .category-icon{
+
+        margin:auto;
+
+    }
+
+
+    .category-meta{
+
+        text-align:left;
+
+    }
+
+
+    .motivation-banner{
+
+        padding:20px;
+
+    }
+
+
+    .rocket{
+
+        opacity:.18;
+
+        right:5px;
+
+    }
+
+
+    .footer{
+
+        flex-direction:column;
+
+        gap:12px;
+
+        padding:
+            25px;
+
+    }
+
+
+    .question-number{
+
+        flex-direction:column;
+
+        align-items:flex-start;
+
+        gap:10px;
+
+    }
+
+
+    .review-title{
+
+        font-size:28px;
+
+    }
+
+
+    .home-btn,
+    .history-btn{
+
+        width:100%;
+
+    }
+
+}
+
+
+@media(max-width:450px){
+
+    .hero-title{
+
+        font-size:30px;
+
+    }
+
+
+    .hero-buttons{
+
+        flex-direction:column;
+
+    }
+
+
+    .hero-buttons .home-btn,
+    .hero-buttons .history-btn{
+
+        width:100%;
+
+    }
+
+
+    .stats-grid{
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap:9px;
+
+    }
+
+
+    .stat-box{
+
+        padding:15px 8px;
+
+    }
+
+
+    .stat-box p{
+
+        font-size:19px;
+
+    }
+
+
+    .trophy-card{
+
+        transform:
+            scale(.72);
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="background-animation"></div>
+
+
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="top-navbar">
+
+
+    <a href="{% url 'category' %}"
+       class="nav-brand">
+
+        <div class="nav-logo">
+
+            <i class="bi bi-lightning-fill"></i>
+
+        </div>
+
+        <span>Quizify</span>
+
+    </a>
+
+
+    <div class="nav-links">
+
+        <a href="{% url 'user_home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'category' %}">
+            Quiz Categories
+        </a>
+
+        <a href="{% url 'profile' %}">
+            History
+        </a>
+
+    </div>
+
+
+    <div class="nav-actions">
+
+        <a href="{% url 'category' %}"
+           class="nav-btn nav-category">
+
+            <i class="bi bi-grid"></i>
+
+            Categories
+
+        </a>
+
+
+        <a href="{% url 'profile' %}"
+           class="nav-btn nav-history">
+
+            <i class="bi bi-clock-history"></i>
+
+            History
+
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero-section">
+
+
+    <div class="hero-inner">
+
+
+        <div class="hero-content">
+
+
+            <div class="hero-small-title">
+
+                Quiz Completed
+
+                <span>🎉</span>
+
+            </div>
+
+
+            <h1 class="hero-title">
+
+                Great Job!
+
+            </h1>
+
+
+            <p class="hero-text">
+
+                You gave your best shot and completed the quiz.
+                Keep learning and keep challenging yourself!
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+
+                <a href="#review"
+                   class="home-btn">
+
+                    <i class="bi bi-list-check"></i>
+
+                    Review Answers
+
+                </a>
+
+
+                <a href="{% url 'category' %}"
+                   class="history-btn">
+
+                    <i class="bi bi-arrow-repeat"></i>
+
+                    Try Again
+
+                </a>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TROPHY -->
+
+        <div class="hero-trophy-area">
+
+
+            <div class="trophy-glow"></div>
+
+
+            <div class="trophy-card">
+
+
+                <div class="trophy-shield">
+
+
+                    <div class="trophy-symbol">
+
+                        <i class="bi bi-trophy-fill"></i>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="trophy-ribbon">
+
+                    Well Done!
+
+                </div>
+
+
+                <div class="trophy-stars">
+
+                    ★ ★ ★
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<div class="main-container">
+
+
+
+    <!-- =====================================================
+         SCORE SUMMARY
+    ====================================================== -->
+
+    <div class="summary-card result-card">
+
+
+        <!-- SCORE -->
+
+        <div class="score-wrapper">
+
+
+            <div class="progress-circle">
+
+
+                <svg>
+
+
+                    <circle
+                        class="bg"
+                        cx="110"
+                        cy="110"
+                        r="95">
+                    </circle>
+
+
+                    <circle
+                        class="progress"
+                        cx="110"
+                        cy="110"
+                        r="95"
+                        id="progressCircle">
+                    </circle>
+
+
+                </svg>
+
+
+                <div class="score-text">
+
+
+                    <h1 id="animatedScore">
+
+                        0
+
+                    </h1>
+
+
+                    <span>
+
+                        / {{ attempt.total_marks }}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- DETAILS -->
+
+        <div class="score-details">
+
+
+            <div class="total-score">
+
+                <span>
+                    {{ attempt.score }}
+                </span>
+
+                /
+                {{ attempt.total_marks }}
+
+            </div>
+
+
+            <div class="total-score-label">
+
+                Total Points
+
+            </div>
+
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-box">
+
+
+                    <i class="bi bi-check-circle-fill"></i>
+
+
+                    <h5>
+                        Correct Answers
+                    </h5>
+
+
+                    <p>
+                        {{ attempt.correct_answers }}
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+
+                    <i class="bi bi-x-circle-fill"></i>
+
+
+                    <h5>
+                        Wrong Answers
+                    </h5>
+
+
+                    <p>
+                        {{ attempt.wrong_answers }}
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+
+                    <i class="bi bi-percent"></i>
+
+
+                    <h5>
+                        Percentage
+                    </h5>
+
+
+                    <p>
+                        {{ attempt.percentage }}%
+                    </p>
+
+
+                </div>
+
+
+
+                <div class="stat-box">
+
+
+                    <i class="bi bi-calendar-event-fill"></i>
+
+
+                    <h5>
+                        Attempt Date
+                    </h5>
+
+
+                    <p style="font-size:13px;">
+
+                        {{ attempt.completed_at }}
+
+                    </p>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         PERFORMANCE SUMMARY
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <i class="bi bi-bar-chart-fill"></i>
+
+            Performance Summary
+
+        </div>
+
+
+        <div class="performance-message">
+
+
+            <div id="performanceIcon">
+
+                <i class="bi bi-trophy-fill"></i>
+
+            </div>
+
+
+            <div style="margin-top:22px;">
+
+                <h2 id="performanceTitle">
+
+                    Loading...
+
+                </h2>
+
+
+                <p id="performanceText">
+
+                    Calculating your result...
+
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="performance-grid">
+
+
+            <div class="performance-card excellent">
+
+
+                <h4>
+
+                    Overall Score
+
+                </h4>
+
+
+                <p>
+
+                    You scored
+                    <strong>
+                        {{ attempt.score }}
+                    </strong>
+                    out of
+                    <strong>
+                        {{ attempt.total_marks }}
+                    </strong>
+                    marks.
+
+                </p>
+
+
+                <div class="performance-line">
+
+                    <span></span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="performance-card average">
+
+
+                <h4>
+
+                    Accuracy
+
+                </h4>
+
+
+                <p>
+
+                    Your overall accuracy is
+                    <strong>
+                        {{ attempt.percentage }}%
+                    </strong>.
+
+                </p>
+
+
+                <div class="performance-line">
+
+                    <span></span>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="performance-card improve">
+
+
+                <h4>
+
+                    Keep Improving
+
+                </h4>
+
+
+                <p>
+
+                    Review your incorrect answers
+                    and strengthen the topics where
+                    you need more practice.
+
+                </p>
+
+
+                <div class="performance-line">
+
+                    <span></span>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         CATEGORY
+    ====================================================== -->
+
+    <div class="section-card">
+
+
+        <div class="section-heading">
+
+            <i class="bi bi-bookmark-fill"></i>
+
+            Category
+
+        </div>
+
+
+        <div class="category-card">
+
+
+            <div class="category-icon">
+
+
+                {% if attempt.category|lower == "science" %}
+
+                    <i class="bi bi-beaker-fill"></i>
+
+
+                {% elif attempt.category|lower == "mathematics" %}
+
+                    <i class="bi bi-calculator-fill"></i>
+
+
+                {% elif attempt.category|lower == "general knowledge" %}
+
+                    <i class="bi bi-globe2"></i>
+
+
+                {% elif attempt.category|lower == "computer science" %}
+
+                    <i class="bi bi-pc-display"></i>
+
+
+                {% elif attempt.category|lower == "history" %}
+
+                    <i class="bi bi-book-half"></i>
+
+
+                {% else %}
+
+                    <i class="bi bi-journal-bookmark-fill"></i>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <div class="category-info">
+
+
+                <h2>
+
+                    {{ attempt.category }}
+
+                </h2>
+
+
+                <p>
+
+                    Test your knowledge and challenge
+                    yourself with questions from
+                    this category.
+
+                </p>
+
+
+                <span class="question-badge">
+
+                    15 Questions
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="category-meta">
+
+
+                <div class="meta-row">
+
+
+                    <i class="bi bi-bar-chart-fill"></i>
+
+
+                    <span>
+
+                        Difficulty Level
+
+                    </span>
+
+
+                    <span class="level-badge">
+
+                        Mixed
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="meta-row">
+
+
+                    <i class="bi bi-clock-fill"></i>
+
+
+                    <span>
+
+                        5 Minutes
+
+                    </span>
+
+
+                </div>
+
+
+
+                <div class="meta-row">
+
+
+                    <i class="bi bi-calendar-event-fill"></i>
+
+
+                    <span>
+
+                        {{ attempt.completed_at }}
+
+                    </span>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MOTIVATIONAL BANNER
+    ====================================================== -->
+
+    <div class="motivation-banner">
+
+
+        <div class="motivation-icon">
+
+            <i class="bi bi-star-fill"></i>
+
+        </div>
+
+
+        <div class="motivation-content">
+
+
+            <h3>
+
+                Every quiz is a step towards becoming smarter!
+
+            </h3>
+
+
+            <p>
+
+                Keep going and you'll achieve even greater results.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="rocket">
+
+            🚀
+
+        </div>
+
+
+    </div>
+
+
+
+    <!-- =====================================================
+         REVIEW ANSWERS
+    ====================================================== -->
+
+    <div class="section-card"
+         id="review"
+         style="margin-top:30px;">
+
+
+        <h2 class="review-title">
+
+            <i class="bi bi-journal-check me-2"></i>
+
+            Review Your Answers
+
+        </h2>
+
+
+        <p class="review-subtitle">
+
+            Compare your answers with the correct answers below.
+
+        </p>
+
+
+
+        {% for answer in answers %}
+
+
+        <div class="answer-card
+                    {% if answer.is_correct %}
+                        correct
+                    {% else %}
+                        wrong
+                    {% endif %}">
+
+
+            <div class="question-number">
+
+
+                <h4>
+
+                    Question {{ forloop.counter }}
+
+                </h4>
+
+
+                {% if answer.is_correct %}
+
+
+                    <span class="status-badge status-correct">
+
+                        <i class="bi bi-check-circle-fill"></i>
+
+                        Correct
+
+                    </span>
+
+
+                {% else %}
+
+
+                    <span class="status-badge status-wrong">
+
+                        <i class="bi bi-x-circle-fill"></i>
+
+                        Wrong
+
+                    </span>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <div class="question-text">
+
+                {{ answer.question }}
+
+            </div>
+
+
+
+            <div class="answer-box user-answer">
+
+
+                <h3>
+
+                    <i class="bi bi-person-fill answer-icon"></i>
+
+                    Your Answer
+
+                </h3>
+
+
+                <p>
+
+
+                    {% if answer.selected_answer %}
+
+
+                        {% if answer.is_correct %}
+
+
+                            <span class="correct-text">
+
+                                {{ answer.get_selected_text }}
+
+                            </span>
+
+
+                        {% else %}
+
+
+                            <span class="wrong-text">
+
+                                {{ answer.get_selected_text }}
+
+                            </span>
+
+
+                        {% endif %}
+
+
+                    {% else %}
+
+
+                        <span class="not-attempted">
+
+                            Not Attempted
+
+                        </span>
+
+
+                    {% endif %}
+
+
+                </p>
+
+
+            </div>
+
+
+
+            <div class="answer-box correct-answer">
+
+
+                <h3>
+
+                    <i class="bi bi-lightbulb-fill answer-icon"></i>
+
+                    Correct Answer
+
+                </h3>
+
+
+                <p class="correct-text">
+
+                    {{ answer.get_correct_text }}
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+        {% empty %}
+
+
+        <div class="alert alert-warning text-center">
+
+            No answer history available.
+
+        </div>
+
+
+        {% endfor %}
+
+
+
+        <!-- =================================================
+             EXISTING LINKS - UNCHANGED
+        ================================================== -->
+
+        <div class="button-area mt-5 pt-3">
+
+
+            <a href="{% url 'category' %}"
+               class="home-btn">
+
+                <i class="bi bi-grid-fill"></i>
+
+                Back to Categories
+
+            </a>
+
+
+            <a href="{% url 'profile' %}"
+               class="history-btn">
+
+                <i class="bi bi-clock-history"></i>
+
+                View History
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+
+    <div class="footer-brand">
+
+        <i class="bi bi-lightning-fill"></i>
+
+        Quizify
+
+    </div>
+
+
+    <div class="footer-copy">
+
+        © 2026 Quizify. All rights reserved.
+
+    </div>
+
+
+    <div class="footer-social">
+
+        <i class="bi bi-facebook"></i>
+
+        <i class="bi bi-twitter-x"></i>
+
+        <i class="bi bi-instagram"></i>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =========================================================
+     SWEET / RESULT JAVASCRIPT
+     EXISTING LOGIC PRESERVED
+========================================================= -->
+
+<script>
+
+
+// ===============================
+// QUIZ RESULT ANIMATIONS
+// ===============================
+
+
+// Django values
+
+const finalScore =
+    Number("{{ attempt.score }}");
+
+
+const totalMarks =
+    Number("{{ attempt.total_marks }}");
+
+
+const percentage =
+    Number("{{ attempt.percentage }}");
+
+
+// Elements
+
+const scoreElement =
+    document.getElementById("animatedScore");
+
+
+const progressCircle =
+    document.getElementById("progressCircle");
+
+
+const performanceTitle =
+    document.getElementById("performanceTitle");
+
+
+const performanceText =
+    document.getElementById("performanceText");
+
+
+const performanceIcon =
+    document.getElementById("performanceIcon");
+
+
+// Hide everything first
+
+document.querySelector(".score-wrapper").style.opacity = "0";
+
+document.querySelector(".performance-message").style.opacity = "0";
+
+
+// Loading animation
+
+performanceTitle.innerHTML =
+    "Calculating...";
+
+
+performanceText.innerHTML =
+    "Please wait while we evaluate your performance.";
+
+
+setTimeout(function(){
+
+    document.querySelector(".score-wrapper").style.opacity = "1";
+
+    document.querySelector(".performance-message").style.opacity = "1";
+
+    startCounter();
+
+},1800);
+
+
+// ===============================
+// SCORE COUNTER
+// ===============================
+
+function startCounter(){
+
+    let score = 0;
+
+    const speed = 60;
+
+    const counter = setInterval(function(){
+
+        score++;
+
+        scoreElement.innerHTML = score;
+
+
+        if(score >= finalScore){
+
+            clearInterval(counter);
+
+            animateCircle();
+
+            setPerformance();
+
+        }
+
+    },speed);
+
+}
+
+
+// ===============================
+// CIRCLE PROGRESS
+// ===============================
+
+function animateCircle(){
+
+    const radius = 95;
+
+    const circumference =
+        2 * Math.PI * radius;
+
+
+    const offset =
+        circumference -
+        (finalScore/totalMarks) *
+        circumference;
+
+
+    progressCircle.style.strokeDashoffset =
+        offset;
+
+}
+
+
+// ===============================
+// PERFORMANCE LEVELS
+// ===============================
+
+function setPerformance(){
+
+
+    // EXCELLENT
+
+    if(finalScore >=25){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-trophy-fill"></i>';
+
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#FFD700,#ff9800)";
+
+
+        progressCircle.style.stroke =
+        "#ffc107";
+
+
+        scoreElement.style.color =
+        "#ffc107";
+
+
+        performanceTitle.innerHTML =
+        "🏆 Outstanding!";
+
+
+        performanceText.innerHTML =
+        "Excellent performance! You have mastered this category.";
+
+
+        createConfetti();
+
+    }
+
+
+    // VERY GOOD
+
+    else if(finalScore >=20){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-award-fill"></i>';
+
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#0d6efd,#4dabf7)";
+
+
+        progressCircle.style.stroke =
+        "#0d6efd";
+
+
+        scoreElement.style.color =
+        "#0d6efd";
+
+
+        performanceTitle.innerHTML =
+        "🌟 Very Good!";
+
+
+        performanceText.innerHTML =
+        "Great work! A little more practice and you'll reach perfection.";
+
+    }
+
+
+    // GOOD
+
+    else if(finalScore >=15){
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-hand-thumbs-up-fill"></i>';
+
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#fd7e14,#ffc107)";
+
+
+        progressCircle.style.stroke =
+        "#fd7e14";
+
+
+        scoreElement.style.color =
+        "#fd7e14";
+
+
+        performanceTitle.innerHTML =
+        "👍 Good Job!";
+
+
+        performanceText.innerHTML =
+        "You performed well. Keep practicing to improve further.";
+
+    }
+
+
+    // NEEDS IMPROVEMENT
+
+    else{
+
+        performanceIcon.innerHTML =
+        '<i class="bi bi-book-fill"></i>';
+
+
+        performanceIcon.style.background =
+        "linear-gradient(135deg,#dc3545,#ff6b6b)";
+
+
+        progressCircle.style.stroke =
+        "#dc3545";
+
+
+        scoreElement.style.color =
+        "#dc3545";
+
+
+        performanceTitle.innerHTML =
+        "📚 Keep Practicing!";
+
+
+        performanceText.innerHTML =
+        "Don't worry. Review the topics and you'll do much better next time.";
+
+    }
+
+}
+
+
+// ===============================
+// CONFETTI
+// ===============================
+
+function createConfetti(){
+
+    for(let i=0;i<150;i++){
+
+        let confetti =
+            document.createElement("div");
+
+
+        confetti.className =
+            "confetti";
+
+
+        confetti.style.left =
+            Math.random()*100+"vw";
+
+
+        confetti.style.animationDelay =
+            Math.random()*2+"s";
+
+
+        confetti.style.background =
+            randomColor();
+
+
+        confetti.style.width =
+            (6+Math.random()*8)+"px";
+
+
+        confetti.style.height =
+            (6+Math.random()*8)+"px";
+
+
+        document.body.appendChild(
+            confetti
+        );
+
+    }
+
+}
+
+
+// ===============================
+// RANDOM COLORS
+// ===============================
+
+function randomColor(){
+
+    const colors=[
+
+        "#ffc107",
+
+        "#ff5722",
+
+        "#198754",
+
+        "#0d6efd",
+
+        "#dc3545",
+
+        "#6610f2",
+
+        "#20c997"
+
+    ];
+
+
+    return colors[
+        Math.floor(
+            Math.random()*colors.length
+        )
+    ];
+
+}
+
+
+// ===============================
+// FADE IN STATS
+// ===============================
+
+window.addEventListener(
+    "load",
+    function(){
+
+        const cards =
+            document.querySelectorAll(
+                ".stat-box"
+            );
+
+
+        cards.forEach(
+            function(card,index){
+
+                card.style.opacity="0";
+
+                card.style.transform=
+                    "translateY(40px)";
+
+
+                setTimeout(
+                    function(){
+
+                        card.style.transition=".6s";
+
+                        card.style.opacity="1";
+
+                        card.style.transform=
+                            "translateY(0px)";
+
+                    },
+                    2500+(index*150)
+                );
+
+            }
+        );
+
+    }
+);
+
+
+// ===============================
+// BUTTON ANIMATION
+// ===============================
+
+const buttons =
+    document.querySelectorAll(
+        ".home-btn,.history-btn"
+    );
+
+
+buttons.forEach(
+    function(button){
+
+        button.addEventListener(
+            "mouseenter",
+            function(){
+
+                button.style.transform =
+                    "scale(1.05)";
+
+            }
+        );
+
+
+        button.addEventListener(
+            "mouseleave",
+            function(){
+
+                button.style.transform =
+                    "scale(1)";
+
+            }
+        );
+
+    }
+);
+
+
+// =======================================
+// REVIEW ANSWER CARD ANIMATION
+// =======================================
+
+window.addEventListener(
+    "load",
+    function () {
+
+        const reviewCards =
+            document.querySelectorAll(
+                ".answer-card"
+            );
+
+
+        reviewCards.forEach(
+            function(card,index){
+
+                card.style.opacity = "0";
+
+                card.style.transform =
+                    "translateY(50px)";
+
+
+                setTimeout(
+                    function(){
+
+                        card.style.transition =
+                            ".6s ease";
+
+                        card.style.opacity =
+                            "1";
+
+                        card.style.transform =
+                            "translateY(0)";
+
+                    },
+                    3500 + (index * 120)
+                );
+
+            }
+        );
+
+    }
+);
+
+
+// =======================================
+// SMOOTH SCROLL TO REVIEW SECTION
+// =======================================
+
+const reviewSection =
+    document.querySelector(
+        ".review-section"
+    );
+
+
+if(reviewSection){
+
+    setTimeout(
+        function(){
+
+            reviewSection.style.scrollMarginTop =
+                "30px";
+
+        },
+        100
+    );
+
+}
+
+
+// =======================================
+// HOVER EFFECT FOR ANSWER CARDS
+// =======================================
+
+document
+.querySelectorAll(".answer-card")
+.forEach(
+    function(card){
+
+        card.addEventListener(
+            "mouseenter",
+            function(){
+
+                card.style.boxShadow =
+                    "0 18px 40px rgba(13,110,253,.18)";
+
+            }
+        );
+
+
+        card.addEventListener(
+            "mouseleave",
+            function(){
+
+                card.style.boxShadow =
+                    "0 10px 30px rgba(0,0,0,.08)";
+
+            }
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
